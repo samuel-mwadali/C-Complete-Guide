@@ -410,3 +410,28 @@ printf("%d", x + y + z);
 ```
 - *Be careful: int x, y, z = 50; does not give all three variables the value 50. Only z gets it. x and y are declared, but they have no value yet.
 - *Tip:* Declared multiple variables on one line is convenient, but declaring them on separate lines can make your code easier to read.
+---
+# **C Variable Names**
+## C Variable Names
+All C variables must be identified with unique names.
+These unique names are called identifiers.
+Identifiers can be short names (like x and y) or more descriptive names(age, sum, totalVolume).
+-*Note:* It is recommended to use descriptive names in order to create understandable and maintainabe code:
+```c
+// Good variable name
+int minutesPerHour = 60;
+
+// OK, but not so easy to understand what m  actually is 
+int m = 60;
+```
+The general rules for naming variables are:
+- Names can contain letters, digits and underscores
+- Names must begin with a letter or an underscore (_)
+- Names are case-sensitive (myVar and myvar are different variables)
+- Names cannot contain whitespaces or special characters like !, #, %, etc
+- Reserved words (such as int) cannot be used as names
+## Valid and Invalid Names
+Here are some examples to help you remember the rules:
+- Valid: age, _count, totalSum
+- Invalid: 1age(starts with a number), my-age(contains - ), int(reserved word)
+Naming style: Many C programmers use camelCase (like totalScore) or underscores (like total_score). Choose one style and use it consistently.
