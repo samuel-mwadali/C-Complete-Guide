@@ -32,3 +32,32 @@ C is often used to create programs that need to run fast and work closely with t
 - C++ was developed as an extension of C, and the syntax is often similar
 - C is mainly a procedural language (you build programs with functions)
 - C++ supports classes and objects (often used for object-oriented programming)
+---
+# **Get Started**
+## Install C
+If you want to run C programs on your own computer, you need two things:
+- A text editor to write C code
+- A compiler to turn the C code into a program the computer can run
+The compiler reads your C code and translates it into machine code.<br>There are many editors and comoilers availble. To make things easier, most people use an IDE, which includes both.<br> Which setup shoud you use? It depends on your computer.
+| You have | Use |
+| --- | --- |
+| Any device | You are in right place |
+| Windows | Code::Blocks |
+| Mac | Xcode command Line Tools. Open the Terminal and type *xcode- select --install* |
+| Linux | GCC. it is often already installed. Type gcc --version in the terminal to check |
+
+## install IDE
+An IDE(Intergrated Development Environment) is a program that helps you write, compile, and run code.
+Popular IDEs and editors inclued Code::Blocks, Visual Studio, and VS code. There are free tools that can also help you find errors in your code.<br>**Note:** Web-based IDEs can also work, but they oten have limited features.
+## Quickstart
+Let's create our first C file.<br>
+Open Code::Blocks and go to File>New>Empty File.<br>
+Write the following c code and save the file as *myfirstcoding.c* (File>Save File as):
+**What just happened?** You wrote C code, the compiler turned it into a program, and the computer ran it. Basic workflow you will use throughout.
+| **myfirstcoding.c** |
+| --- |
+| *-> compile ->* |
+| **program** |
+| *-> run ->* |
+| **Hello World!** |
+---
