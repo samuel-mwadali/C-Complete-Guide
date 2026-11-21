@@ -1,8 +1,8 @@
 Documenting my journey learning C from scratch - complete with notes, code snippets and progress tracking.
 ---
-# ** Learn C**
+# **Learn C**
 C is a general-purpose programming language that has been widely used for over 50 years.<br>C is very powerful; it has been used to develop operating systems, databases, applications, etc.
-## what to learn
+## What to learn
 This guide, step by step, with codes along the way.
 - How C programs are structured
 - Variables, data types, and operators
@@ -37,7 +37,7 @@ C is often used to create programs that need to run fast and work closely with t
 ## Install C
 If you want to run C programs on your own computer, you need two things:
 - A text editor to write C code
-- A compiler to turn the C code into a program the computer can run
+- A compiler to turn the C code into a program the computer can run<br>
 The compiler reads your C code and translates it into machine code.<br>There are many editors and comoilers availble. To make things easier, most people use an IDE, which includes both.<br> Which setup shoud you use? It depends on your computer.
 | You have | Use |
 | --- | --- |
@@ -282,7 +282,7 @@ int myNum = 15;
 printf(myNum); // This will cause an error
 ```
 - To print variables in C, you must use something called **format specifiers.**
-Don't worry - this will be explained clearly in the next chapter.
+- Don't worry - this will be explained clearly in the next chapter.
 ---
 # **C Format Specifiers**
 ## Format specifiers
@@ -472,3 +472,38 @@ printf("Width is: %d\n", width);
 printf("Area of the rectangle is: %d", area);
 ```
 - *Tip:* Calculations are usually done first, and the result is stored in a variable before being printed.
+---
+# **C Data Types**
+## Data Types
+A variable in C must be a specified data type, and you must use a format specifier inside the printf() function to display it.
+```c
+// Create variable
+int myNum = 5; // Interger (whole number)
+float myFloatNum = 5.99; // Floating point number
+char myLetter = 'D'; // Character
+
+// Print variables
+printf("%d\n", myNum);
+printf("%f\n", myFloatNum);
+printf("%c\n", myLetter);
+```
+--
+## Basic Data Types
+The data type specifies the size and type of information the variable will store.
+| Data type | Size | Description | Example |
+| --- | --- | --- | --- |
+| int | 2 or 4 bytes | Store whole numbers, without decimals | 1 |
+| float | 4 bytes | Stores fractional numbers, containing one or more decimals. Sufficient 6-7 decimal digits. | 1.99 |
+| double | 8 bytes | Stores fractional numbers, containing one or more decimals. Sufficient for storing 15 decimal digits. | 1.99 |
+| char | 1 byte | Store a single character/letter/number, or ASCII values | 'A' |
+## Basic Format Specifiers
+There are different format specifiers for each data type. Here are some of them.
+| Format specifier | Data Type |
+| --- | --- |
+| %d or %i | int | 
+| %f or %F | float |
+| %lf | double |
+| %c | char |
+| $s | strings |
+- *Note:* It is important that you use the correct format specifier for the specified data type. If not, the program may produce errors or even crash.
+
