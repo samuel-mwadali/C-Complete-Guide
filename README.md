@@ -147,4 +147,59 @@ int main(){
     return 0;
 }
 ```
+- **Notice:** All the text appears on the same line. In the next chapter, you will learn how to add new lines to make the output easier to read.
 ---
+# **C New Lines**
+## New lines
+To start a new line when printing text, you can use the \n character:
+```c
+# include <stdio.h>
+
+int main() {
+    printf("Hellow World!\n");
+    printf("I am learning C.");
+    return 0;
+}
+```
+You can also print multiple lines using a single *printf()* function. However, this could make the code harder to read:
+```c
+#include <stdio.h>
+
+int main(){
+    printf("Hello World!\nI am learning C.\nAnd it is awesome!");
+    return 0;
+}
+```
+- *Tip* Two \n characters in row will create a blank line
+```c
+# include <stdio.h>
+
+int main() {
+    printf("Hello World!\n\n");
+    printf("I am learning C.");
+    return 0;
+}
+```
+**What is \n exactly?**<br>
+\n is called an escape sequence.<br>
+Escape sequences start with a backslash and represent special characters that cannot be typed directly.<br>
+In this case, \n tells the program to move the cursor to the beginning of the next line.<br>
+Here are some other common escape sequences:
+| Escape Sequence | Description |
+| --- | --- |
+| \t | Insert a horizontal tab |
+| \\ | Insert a backslash character(\) |
+| \" | Insert a double quote character |
+## Fun Example: Draw a Pyramid
+With few *printf()* functions and \n, you can draw pictures in the output. Pictures made of keyboard characters are called ASCII art.
+```c
+# include <stdio.h>
+
+int main(){
+    printf("    *\n");
+    printf("   **\n");
+    printf("  ***\n");
+    printf(" ****\n");
+    printf("*****\n");
+    return 0;
+}
