@@ -332,3 +332,65 @@ You can also print values directly without storing them in variables, as long as
 printf("My favorite number is: %d", 15);
 printf("My favorite number is: %c", 'D');
 ```
+---
+# **C Variable Values**
+## Change Variable Values
+If you assign a new value to an existing of variable, the new value will replace the old one:
+```c
+int myNum = 15; // myNum is 15
+myNum = 10; // Now myNum is 10
+```
+- *Note:* This is normal and expected. Variables are meant to change while a program runs.
+You can also assign the value of one variable to another.
+```c
+int myNum = 15;
+int myOtherNum = 23;
+// Assign the value of myOtherNum (23) to myNum
+myNum = myOtherNum;
+// myNum is now 23 (was 15)
+printf("%d", myNum);
+```
+you can even copy values into variables that were declared earlier without a value.
+```c
+// Create a variable and assign a value
+int myNum = 15;
+
+// Declare a variable without assigning a value
+int myOtherNum;
+
+// Copy the value from myNum
+myOtherNum = myNum;
+
+// myOtherNum is now 15
+printf("%d", myOtherNum);
+```
+## Add Variables Together
+You can use mathematical operators to work with variables. For example, to add one variable to another, use the + operator.
+```c
+int x = 5;
+int y = 6;
+int sum = x + y;
+printf("%d", sum);
+```
+You can also update a variable using its current value
+```c
+int x = 5;
+int x + 1;
+printf("%d", x);
+```
+- *Tip:* Writing x = x + 1 means "take the current value of x and add 1 to it."
+**Note:** You will learn much more about operators in later chapter
+## Swap two variables
+A common task in programming is to swap the values of two variables.
+To do this, you need a third variable that holds one of the values for a moment. It works like swapping the drinks in two glasses: You need an empty third glass to do it.
+```c
+int a = 5;
+int b = 10;
+int temp;
+// Swap the values of a and b
+temp = a; // glass a to an empty glass
+a = b; // glass b to an empty glass a
+b = temp // empty glass temp to glas empty glass b
+printf("a is %d, b is %d", a, b);
+```
+**Why do we need temp?** if you only write a = b; and then b = a; both variables end up as 10, the first line replaces the 5 in a, so it is lost before b can get it
