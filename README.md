@@ -284,4 +284,51 @@ printf(myNum); // This will cause an error
 - To print variables in C, you must use something called **format specifiers.**
 Don't worry - this will be explained clearly in the next chapter.
 ---
+# **C Format Specifiers**
+## Format specifiers
+Format specifiers are used together with the printf() function to print variables.<br>
+You can think of a format specifier as a **placeholder** that tells C what kind of value will be printed.<br>
+A format specifier always starts with a percentage sign % , followed by a letter.<br>
+For example, to output the value of an *int* variable, use the format specifier %d surrounded by double quotes(" "), inside the **printf()** function
+```c
+int myNum = 15;
+printf("%d", myNum); // Output 15
+```
+- *How it works:* %d tells C to expect an interger value, and *myNum* provides that value.
+Different data types use different format specifiers.
+```c
+// Create variables
+int myNum = 15; // Interger (whole number)
+float myFloatNum = 5.99; // Floating point number
+char myLetter = 'D'; // Character
 
+// print variables
+printf("%d\n", myNum);
+printf("%f\n", myFloatNum);
+printf("%c\n", myLetter);
+```
+To combine both text and a variable, separate them with a comma inside the *printf()* function
+```c
+int myNum = 15;
+printf("My favorite number is: %d", myNum);
+```
+To print different types in a single printf() function, you can use the following
+```c
+int myNum = 15;
+char myLetter = 'D';
+printf("My number is %d and my letter is %c", myNum, myLetter);
+```
+Run the simulation below to see how *printf()* fills in each placeholder, from left to right.
+```c
+int myNum = 15;
+char myLetter = 'D';
+printf("My number is %d and my letter is %c", myNum, myLetter);
+```
+- *printf()* prints the text inside text inside the double quotes, from left to right
+- *Tip:* Each format specifier must match the correct type of value. You will learn more about data types later in this tutorial.
+## Print values without variables
+You can also print values directly without storing them in variables, as long as you use the correct format specifier.
+```c
+printf("My favorite number is: %d", 15);
+printf("My favorite number is: %c", 'D');
+```
