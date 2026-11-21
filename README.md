@@ -68,3 +68,29 @@ int main(){
 | *-> run ->* |
 | **Hello World!** |
 ---
+# **C Syntax**
+## Syntax
+You have already seen the following code a couple of times in the first. Let's break it down and understand what each part does:<br>
+Here is what each line of the program does:
+```C
+#include <stdio.h>            // Makes printf() available
+
+int main(){                   // The program starts here
+    printf("Hellow World!");  // Prints Hello World! to the screen
+    return 0;                 // Ends the program
+}                             // The end of main()
+```
+## Example explained
+- **line 1:** tells C to include a header file. This header lets us use input/output functions such as printf()
+- **line 2:** A blank line. C ignores extra spaces and blank lines, but we use them to make the code easier to read.
+- **line 3:** main() is a special function. Your program starts running here. Any code inside the curly brackets {} will be executed<br>The word int before main() means that the function gives back a whole number (an interger) when it ends. That number is the 0 in return 0.
+- **line 4:** printf() is a function used to output (print) text to the screen. In our example, it prints *Hello World!*<br>
+**Note:** Every C statement ends with a semicolon ;<br>
+**Note:** The body of *int main()* could also be written as:
+```C
+int main(){printf("Hello World!");return 0;}
+```
+**Remember:** The compiler ignores extra spaces and new lines, but using multiple lines makes code easier to read.
+- **line 5** *return 0* ends the *main()* function and sends a value back to the operating system.<br>Returning *0* usually means "everything worked."
+- **line 6:** Do not forget the closing curly bracket } to end **main()** function.
+---
