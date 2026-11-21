@@ -53,6 +53,13 @@ Popular IDEs and editors inclued Code::Blocks, Visual Studio, and VS code. There
 Let's create our first C file.<br>
 Open Code::Blocks and go to File>New>Empty File.<br>
 Write the following c code and save the file as *myfirstcoding.c* (File>Save File as):
+```C
+#include <stdio.h>
+int main(){
+    printf("Hellow World!");
+    return 0;
+}
+```
 **What just happened?** You wrote C code, the compiler turned it into a program, and the computer ran it. Basic workflow you will use throughout.
 | **myfirstcoding.c** |
 | --- |
