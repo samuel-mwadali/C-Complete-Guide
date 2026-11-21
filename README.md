@@ -118,3 +118,33 @@ The first statements runs first and prints *Hello World!*.<br>
 Then the second statements runs and prints *Have a good day!*.<br>
 Finally, the last statement runs and ends the program.
 - **Remember: Each statement is one instruction, and it must end with a semicolon.
+---
+# **Output (print Text)**
+## Output (Print Text)
+To output values or print text in C, you can use the printf() function:
+```c
+#include <stdio.h>
+
+int main(){
+    printf("Hello World!");
+    return 0;
+}
+```
+## Double quotes
+When you want to print text, the text must be wrapped in double quotes "".
+if you forget the double quotes, an error occurs:
+- **Tip:** If you see stranger error messages, check that your text starts and ends with double quotes
+## Many **printf()** Functions
+You can use as many **printf()** functions as you want.<br>
+However, note that does not insert a new line at the end of the output.
+```c
+# include <stdio.h>
+
+int main(){
+    printf("Hello World!");
+    printf("I am learning C.");
+    printf("And it is awesome!");
+    return 0;
+}
+```
+---
