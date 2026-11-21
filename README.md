@@ -394,3 +394,19 @@ b = temp // empty glass temp to glas empty glass b
 printf("a is %d, b is %d", a, b);
 ```
 **Why do we need temp?** if you only write a = b; and then b = a; both variables end up as 10, the first line replaces the 5 in a, so it is lost before b can get it
+# **C Declare Multiple Variables**
+## Declare multiple Variables
+To declare more than one variable of the same type, use a comma-separated list.
+```c
+int x = 5, y = 6, z = 50;
+printf("%d", x + y + z);
+```
+- *Note:*  All variables must be of the same type. You cannot mix types in the same declaration.
+You can also assign the same value to multiple variables at once:
+```c
+int x, y, z;
+x = y = z = 50;
+printf("%d", x + y + z);
+```
+- *Be careful: int x, y, z = 50; does not give all three variables the value 50. Only z gets it. x and y are declared, but they have no value yet.
+- *Tip:* Declared multiple variables on one line is convenient, but declaring them on separate lines can make your code easier to read.
