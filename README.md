@@ -506,4 +506,41 @@ There are different format specifiers for each data type. Here are some of them.
 | %c | char |
 | $s | strings |
 - *Note:* It is important that you use the correct format specifier for the specified data type. If not, the program may produce errors or even crash.
+# **C Character Data Types**
+## The char Type
+The *char* data type is used to store a single character.<br>
+The character must be surrounded by single quotes, like 'A' or 'c', and we use the %c format specifier to print it
+```c
+char myGrade = 'A';
+printf("%c", myGrade);
+```
+Alternatively,if you are familiar with ASCII (a standard that gives each character a number), you can use ASCII values to display certain characters. Note that thse values are not surrounded by quotes(' '), as they are numbers.
+```c
+char a = 65, b = 66, c = 67;
+printf("%c\n", a);
+printf("%c\n", b);
+printf("%c", c);
+```
+## Character are stored as numbers
+Inside the computer, every character is stored as a number. For example, 'A' is stored as 65.
+if you print a char with %d instead of %c, you see the number
+```c
+char myLetter = 'A';
 
+printf("%c\n", myLetter);  // A
+printf("%d\n", myLetter);  // 65
+```
+## Notes on Characters
+If you try to store more than a single character, it will only print the last character.
+```c
+char myText = 'Hello';
+printf("%c", myText);
+```
+- *Note:* Don't use the *char* type for storing multiple characters, as it may produce errors.
+To store multiple characters(or whole words), use strings (which you will learn more about in later chapter);
+```c
+char myText[] = "Hello";
+printf("%s", myText);
+```
+For now, just know that we use strings for storing multiple characters/text and the char type for single characters.
+---
