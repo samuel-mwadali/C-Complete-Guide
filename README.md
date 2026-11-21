@@ -435,3 +435,40 @@ Here are some examples to help you remember the rules:
 - Valid: age, _count, totalSum
 - Invalid: 1age(starts with a number), my-age(contains - ), int(reserved word)
 Naming style: Many C programmers use camelCase (like totalScore) or underscores (like total_score). Choose one style and use it consistently.
+# **C Variables - Examples**
+## Real-life Example
+Often in our examples, we simplify variable names to match their data type (myint or myNum for *int* types, myChar for *char* types, and so on). This is done to avoid confusion.<br>
+In real programs, variables often represent real-world data.
+The following example stores information about a college student.
+```c
+// Student data
+int studentID = 15;
+int studentAge = 23;
+float studentFee = 75.25;
+char studentGrade = 'B';
+
+// Print variables
+printf("Student ID: %d\n", studentID);
+printf("Student age: %d\n", studentAge);
+printf("Student fee: %f\n", studentFee);
+printf("Student grade: %c\n", studentGrade);
+```
+- **Notice:** Each variable stores a different type of information, but they are all used together in one program.
+- *Tip:* %f prints six decimals by default, so studentFee is printed as 75.250000.
+## Calculate the Area of a Rectangle
+Variables are often used to store values, perform calculations, and then show the result. In this example, we calculate the area of a rectangle:
+```c
+// Create variables
+int length = 4;
+int width = 6;
+int area;
+
+// Calculate the area
+area = length * width;
+
+// Print the result
+printf("Length is: %d\n", length);
+printf("Width is: %d\n", width);
+printf("Area of the rectangle is: %d", area);
+```
+- *Tip:* Calculations are usually done first, and the result is stored in a variable before being printed.
