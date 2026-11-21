@@ -240,3 +240,48 @@ printf("Hello World!");
 it is up to you which you want to use. Normally, we use // for short comments and /* */ for longer comments.<br>**Good to know:** Before c99 (release in 1999), you could only use multi-line comments in C.
 ## What the Compiler Sees
 Comments are for people reading your code, not for the computer. They help explain what your program does, but they don't affect how it runs.<br>When you compile  your program, comments are ignored.<br>Here is a program with some helpful comments. Switch the view to see the code without them.
+# **C Variables**
+## Variables
+Variables are containers for storing data values, like numbers and characters.<br>
+You can think of a variable as a named box where you keep a value that can be used later.<br>
+In C, variables must have a specific **type**, which tells the program what kind of data the variable can store.
+- **int** - stores whole numbers(intergers), such as *123* or *-123*
+- **float** - stores numbers with decimals, such as *19.99* or *-19.99*
+- **char** - stores a single character, such as 'a' or 'B'. Characters are surrounded by single quotes
+## Declaring (creating) Variables
+To create a variable, you must specify the type and give the variable a **name.**
+You can also assign a value at the same time.
+```text
+Syntax
+type variableName = value;
+```
+Where type is one of the C data types (such as *int*), and variableName is the name you choose (for example x or myNum)
+The equal sign = is used to assign a value to the variable.<br>
+So, to create a variable that should store a number.
+```c
+/*Create a variable named myNum of type int and assign the value 15*/
+int myNum = 15;
+```
+you can also declare a variable first and assign a value later.
+```c
+// Declare a variable
+int myNum;
+
+// Assign a value later
+myNum = 15;
+```
+- *Tip*- Variable names should be meaningful, so your code is easier to understand.
+## Output Variables
+You learned from the output chapter that you can print text using printf() function
+```c
+printf("Hello World!");
+```
+In many other programming languages (like python, Java, and C++), you would normally use a **print function** to display the value of a variable. However, this is not possible in C.
+```c
+int myNum = 15;
+printf(myNum); // This will cause an error
+```
+- To print variables in C, you must use something called **format specifiers.**
+Don't worry - this will be explained clearly in the next chapter.
+---
+
