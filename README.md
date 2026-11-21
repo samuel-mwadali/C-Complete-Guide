@@ -1,6 +1,6 @@
 Documenting my journey learning C from scratch - complete with notes, code snippets and progress tracking.
 ---
-**# Learn C**
+# ** Learn C**
 C is a general-purpose programming language that has been widely used for over 50 years.<br>C is very powerful; it has been used to develop operating systems, databases, applications, etc.
 ## what to learn
 This guide, step by step, with codes along the way.
@@ -203,3 +203,40 @@ int main(){
     printf("*****\n");
     return 0;
 }
+```
+---
+# **Comments**
+## Comments in C
+Comments can be used to explain C code, and to make it more readable.<br>
+It can also be used to prevent exection when testing alternative code.<br>
+Comments are ignored by the compiler, so they do not affect your program's output.
+## Single-line Comments
+Single-line comments start with two forward slashes(//).<br>
+Any text between // and the end of the line is ignored by the compiler.<br>
+This example uses a single-line comment before a line of code.
+```c
+// This is a comment
+printf("Hello World!");
+```
+This example uses a single-line comment at the end of of a line of code.
+```c
+printf("Hello World!"); // This is a comment
+```
+You can also use // to disable a single line of code.
+```c
+printf("This will run");
+// printf("This will NOT run");
+```
+## Multi-line Comments
+Multi-line comments starts with /* and end with */
+Any text between /* and */ will be ignored by the compiler.
+```c
+/* The code below will print the words
+words Hello World!
+to the screen, and it is amazing */
+printf("Hello World!");
+```
+**Single or multi-line comments?**
+it is up to you which you want to use. Normally, we use // for short comments and /* */ for longer comments.<br>**Good to know:** Before c99 (release in 1999), you could only use multi-line comments in C.
+## What the Compiler Sees
+Comments are for people reading your code, not for the computer. They help explain what your program does, but they don't affect how it runs.<br>When you compile  your program, comments are ignored.<br>Here is a program with some helpful comments. Switch the view to see the code without them.
