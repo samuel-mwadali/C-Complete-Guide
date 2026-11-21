@@ -94,3 +94,27 @@ int main(){printf("Hello World!");return 0;}
 - **line 5** *return 0* ends the *main()* function and sends a value back to the operating system.<br>Returning *0* usually means "everything worked."
 - **line 6:** Do not forget the closing curly bracket } to end **main()** function.
 ---
+# **C Statements**
+## Statements
+A **computer program** is a list of instructions that a computer follows.<br>In C, these instructions are called **statements**.<br>The following statements tells the program to print the text **Hello World!** to the screen.
+```c
+pritnf("Hello World!");
+```
+Every statement in C must end with semicolon ;
+If you forget the semicolon, the compiler will show an error and the program will not run.
+## Many statements
+Most C programs contain more than one statement.<br>Statement are executed one by one, in the same order as they are written.
+```c
+pritnf("Hello World!");
+printf("Have a good day!");
+return 0;
+```
+## Example explained
+This program contains three statements
+- printf("Hello World!"):
+- printf("Have a good day!");
+- return );
+The first statements runs first and prints *Hello World!*.<br>
+Then the second statements runs and prints *Have a good day!*.<br>
+Finally, the last statement runs and ends the program.
+- **Remember: Each statement is one instruction, and it must end with a semicolon.
