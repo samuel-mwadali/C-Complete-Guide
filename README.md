@@ -654,3 +654,36 @@ int main(){
 3.142
 3
 ```
+# **C The size of Operator**
+## Get the Memory Size
+we introduced in the data types chapter that the memory size of a variable varies depending on the type.
+| Data Type | Size |
+| --- | --- |
+| int | 2 or 4 bytes |
+| float | 4 bytes |
+| double | 8 bytes |
+| char | 1 byte |
+The memory size refers to how much space a type occupies in the *computer's memory*.<br>
+To actually get the size (in bytes) of a data type or variable, use the **sizeof** operator.
+```c
+# include <stdio.h>
+
+int main(){
+    int myInt;
+    float myFloat;
+    double myDouble;
+    char myChar;
+    
+    printf("%zu\n", sizeof(myInt)); // 4
+    printf("%zu\n", sizeof(myFloat)); // 4
+    printf("%zu\n", sizeof(myDouble)); // 8
+    printf("%zu\n", sizeof(myChar)); // 1
+    
+    return 56;
+}
+```
+- Note that we use the *%zu* format specifier to print the result, instead of %d. This is because the compliler expects the sizeof operator to return a value of type size_t, which is an usigned interger type. On some computers it might work with %d, but it is safer and more portable to use %zu, whidh is specifically designed for printing size_t values.
+## Why should you know the size of Data Types?
+Knowing the size of data helps you understand how much memory your program uses. This is important when writing larger programs or working with limited memory, because it can affect both performance and efficiency.<br>
+For example, the size or a *char* type is 1 byte. Which means if you have an array o 1000 *char* values, it will occupy 1000 bytes (1kB) of memory.<br>
+Using the right data type for the right pupose will **save memory** and **improve the performance** of your program.
