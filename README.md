@@ -687,3 +687,32 @@ int main(){
 Knowing the size of data helps you understand how much memory your program uses. This is important when writing larger programs or working with limited memory, because it can affect both performance and efficiency.<br>
 For example, the size or a *char* type is 1 byte. Which means if you have an array o 1000 *char* values, it will occupy 1000 bytes (1kB) of memory.<br>
 Using the right data type for the right pupose will **save memory** and **improve the performance** of your program.
+---
+# **C Data Types Example**
+## Real-life Example
+Here's a real-life example of using different data types, to calculate and output the total cost of a number of items:
+```c
+# include <stdio.h>
+
+int main(){
+    // Create variables of different data types
+    int items = 50;
+    float cost_per_item = 9.99;
+    float total_cost = items * cost_per_item;
+    char currency = '$';
+    
+    // Print variables
+    printf("Number of items: %d\n", items);
+    printf("Cost per item: %.2f %c\n", cost_per_item, currency);
+    printf("Total cost = %.2f %c\n", total_cost, currency);
+    
+    return 56;
+}
+```
+```text
+Number of items: 50
+Cost per item: 9.99 $
+Total cost = 499.50 $
+
+...Program finished with exit code 56
+```
