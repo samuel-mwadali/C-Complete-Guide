@@ -542,5 +542,51 @@ To store multiple characters(or whole words), use strings (which you will learn 
 char myText[] = "Hello";
 printf("%s", myText);
 ```
-For now, just know that we use strings for storing multiple characters/text and the char type for single characters.
+- For now, just know that we use strings for storing multiple characters/text and the char type for single characters.
 ---
+# **C Numeric Data Types**
+## Numeric Types
+Use *int* when you need to store a whole number without decimals, like 34 or 3999 and *float* or *double* when you need a floating point number (with decimals), like 9.99 03 3.14515
+**int**
+```c
+int myNum = 1000;
+printf("%d", myNum);
+```
+**float**
+```c
+float myNum = 5.75;
+printf("%f", myNum);
+```
+```c
+double myNum = 19.99;
+printf("%lf", myNum);
+```
+**float ** vs **double**
+- The precision of a floating point value tells how many digits it can store correctly, counting the digits both before and after decimal point. The precision of **float** is about six or seven digits, while **double** variables have a precision of about 15 digits. Therefore, it is often safer to use **double** for most calculations - but note that it takes up twice as much memory as **float** (8 bytes or 4 bytes)
+Here you can see the difference. The number **1234567.89** has 9 digits, which is too many for a **float**
+```c
+float myFloat = 1234567.89;
+double myDouble = 1234567.89;
+printf("%f\n", myFloat);
+printf("%lf", myDouble);
+```
+```text
+1234567.875000
+1234567.890000
+```
+The **float** could not store the number exactly, so the last digits are wrong. The **double** stores it correctly.
+## Scientific Numbers
+In C, you can write very large or very small floating point numbers using scientific notation.<br>This is done using the letter *e* (or E ), which stands for "times 10 to the power of".<br>For example, *35e3* means 35 * 10^3 = 350000.<br>
+This is useful for writing numbers in a shorter way. Especiaally when working with scientific values or large-scale data.
+```c
+# include <stdio.h>
+
+int main(){
+    float f1 = 35e3;
+    double d1 = 12E4;
+    
+    printf("%f\n", f1);
+    printf("%lf\n", d1);
+    return 0;
+}
+```
