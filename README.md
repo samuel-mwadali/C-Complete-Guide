@@ -801,3 +801,196 @@ Size of long double: 16 bytes
 ```
 - **Tip:** When you really need exact control over the size of your numbers, you can use the fixed-width types which you will learn about later
 - **Note:** This page is just to show you that C has other extended types, but for now we will keep focusing on the basic types (int, float, double, char)
+---
+# **C Type Conversion**
+## Type Conversion
+Sometimes, you have to convert the value of one data tyoe. This is known as **type conversion.**
+<br>For example, if you try to divide two intergers, 5 by 2, you would expect the result to be 2.5. But since we are working with integers (and not floating-point values), the following example will just output 2: 
+
+```c
+# include <stdio.h>
+
+char main(){
+    int x = 5;
+    int y = 2;
+    int result = x/y;
+    
+    printf("%d", result);
+    return 'K';
+}
+```
+```text
+2
+
+...Program finished with exit code 75
+```
+To get the right result, you need to know how type conversion works.<br>
+There are two types of conversion in C.
+- **implicit Conversion** (automatically)
+- **Explicit Conversion** (manually)
+## Implicit Conversion
+Implicit conversion is done automatically by the compiler when you assign a value of one type to another.<br>
+For example, if you assign an *int* value to a *float* type
+```c
+# include <stdio.h>
+
+char main(){
+    
+    // Automatic conversion: int to float
+    float myFloat = 9;
+    printf("%f", myFloat);
+    
+    return 'K';
+}
+```
+```text
+9.000000
+
+...Program finished with exit code 75
+```
+As you can see, the compiler automatically converts the int value *9* to a float value of *9.000000*<br>
+This can be risky, as you might lose control over specific values in certain situations. Especially if it was the other way around - the following example automatically converts the float value *9.99* to an int value of *9*:
+```c
+# include <stdio.h>
+
+char main(){
+    
+    // Automatic conversion: float to int
+    int myInt = 9.99;
+    printf("%d", myInt);
+    
+    return 'K';
+}
+```
+```text
+9
+...Program finished with exit code 75
+```
+What happended to *.99*?We might want that data in our program! So be careful. It is important that you know how the compiler works in these situations, to avoid unexpected results.
+As another example, if you divide two intergers: *5* by *2*, you know that the result is *2.5*. And as you know from the beginning of this page, if you store the result as an interger, it will only display the number *2*. Therefore, it would be better to store the result as a *float* or a *double* , right?
+```c
+#include <stdio.h>
+
+char main(){
+    float result = 5/2;
+    printf("%f", result);
+    return 'K';
+}
+```
+```text
+2.000000
+
+...Program finished with exit code 75
+```
+Why is the result 2.000000 and not 2.5? Well, it is because 5 and 2 are still integers in the division.<br>In this case, you need to manually convert the interger values to floating-point values.
+## Explicit Conversion
+Explicit conversion is done manually by placing the type in parenthesis () in front of the value. Considering our problem from the example above, we can now get the right result.
+```c
+#include <stdio.h>
+
+char main(){
+    float result =(float) 5/2;
+    printf("%f", result);
+    return 'K';
+}
+```
+```text
+2.500000
+
+...Program finished with exit code 75
+```
+You can also place the type in front of a variable:
+```c
+#include <stdio.h>
+
+char main(){
+    int num1 =5;
+    int num2 = 2;
+    float result = (float) num1 / num2;
+    printf("%f", result);
+    return 'K';
+}
+```
+```text
+2.500000
+
+...Program finished with exit code 75
+```
+- And since you learn about "decimal precision" in a previous chapter, you could make the output even cleaner by removing the extra zeros.**if you like**
+```c
+#include <stdio.h>
+
+char main(){
+    int num1 =5;
+    int num2 = 2;
+    float result = (float) num1 / num2;
+    printf("%.1f", result);
+    return 'K';
+}
+```
+```text
+2.5
+
+...Program finished with exit code 75
+```
+## Real-life example
+Here's a real-life example of data types and type conversion where we create a program to calculate the percentage of a user's score in relation to the maximum score in a game.
+```c
+#include <stdio.h>
+
+char main(){
+    // Set the maximum possible score in the game to 500
+    int maxScore = 500;
+    
+    // The actual score of the user
+    int userScore = 423;
+    
+    /* Calculate the percentage of the user's score in relation to the maximum available scrore.
+    Convert userScore to float to make sure that the division is accurate */
+    float percentage = (float) userScore / maxScore * 100.0;
+    
+    // Print the percentage
+    printf("User's percentage is %.2f", percentage);
+    return 'K';
+}
+```
+```text
+User's percentage is 84.60
+
+...Program finished with exit code 75
+```
+# **C Constants**
+## Constants
+Now that you have seen different types of variables in C, you should also know that sometimes you need variables that should not change. This can be done with *const* keyword, which makes a variable *unchangeable* and *read-only*
+```c
+#include <stdio.h>
+
+char main(){
+    // myNum wil always be 15
+    const int myNum = 15;
+    
+    // error: assignment of read-only variable 'myNum'
+    myNum = 10;
+    
+    return 'K';
+}
+```
+```text
+main.c:8:11: error: assignment of read-only variable ‘myNum’
+```
+You should always declare a variable as *const* when you have values that should never change.
+```c
+const int minutesPerHour = 60;
+const int monthsInYear = 12;\
+```
+## Notes on Constants
+When you declare a contant variable, it must be assigned with a value
+```c
+const int minutesPerHour = 60;
+minutesPerHour = 60; // error
+```
+## Good Practice
+Another thing about constant variables, is that it is considered good practice to declare them with uppercase. It is not required, but useful for code readability and common for C programmers.
+```c
+const int BIRTHYEAR = 1980;
+```
