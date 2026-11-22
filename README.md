@@ -1014,9 +1014,169 @@ char main(){
     return 'K';
 }
 ```
+```text
+800
+
+...Program finished with exit code 75
+```
 C divides the operators into the following groups:
 - Arithmetic operators
 - Assignment operators
 - Comparison operators
 - Logical operators
 - Bitwise operators(advanced)
+---
+# **C Arithmetic Operators**
+## Arithmetic Operators
+Arithmetic operators are used to perform common mathematical operations.
+| Operator | Name | Decription | Example |
+| --- | --- | --- | --- |
+| + | Addition | Adds together two values | x + y |
+| - | Subtraction | Subtracts one value from another | x - y |
+| * | Multiplication | Multiplies two values | x * y |
+| / | Division | Divides one x/y value by another | x / y |
+| % | Modulus | Returns the division remainder | x % y |
+| ++ | Increment | Increases the value of a variable by 1 | ++x |
+| -- | Decrement | Decreases the value of a variable by -1 | --x |
+
+Here is an example using different arithmetic operators in one example.
+```c
+#include <stdio.h>
+
+char main(){
+    int x = 10;
+    int y = 3;
+    
+    printf("%d\n", x + y);
+    printf("%d\n", x - y);
+    printf("%d\n", x * y);
+    printf("%d\n", x / y);
+    printf("%d\n", x % y);
+     
+    int z = 5;
+    ++z;
+    printf("%d\n", z);
+    --z;
+    printf("%d\n", z);
+    --z;
+    printf("%d\n", z);
+    return 'K';
+}
+```text
+13
+7
+30
+3
+1
+6
+5
+4
+
+...Program finished with exit code 75
+```
+- **Note:** When dividing two intergers in C, the result will also be an interger. For example, 10/3 gives 3. If you want a decimal result, use float or double values, like 10.0 / 3
+```c
+#include <stdio.h>
+
+char main(){
+    int a = 10;
+    int b = 3;
+    printf("%d\n", a / b); // Interger division
+    
+    double c = 10.0;
+    double d = 3.0;
+    printf("%f\n", c / d); // Decimal division
+    return 'K';
+}
+```
+```text
+3
+3.333333
+
+...Program finished with exit code 75
+```
+## Incrementing and Decrementing
+Incrementing and decrementing are very common in programming, especially when working with counters, loops, and arrays. The ++ operator increases a value by 1, while the -- operator decreases a value by 1.
+```c
+#include <stdio.h>
+
+char main(){
+    int x = 5;
+    ++ x; // Increment x by 1
+    printf("%d\n", x);
+    return 'K';
+}
+```
+```text
+6
+
+...Program finished with exit code 75
+```
+```c
+#include <stdio.h>
+
+char main(){
+    int x = 5;
+    -- x; // Decrement x by 1
+    printf("%d\n", x);
+    return 'K';
+}
+```
+```text
+4
+
+...Program finished with exit code 75
+```
+Sometimes, you might both increment and decrement the same variable. Remember that if you increase a value and later decrease it, it will go up one and then back down by one - ending up where it started:
+## real Life Example:Counting People
+Imagine you are building a program to count how many people enter and leave a room. You can use ++ to increase the counter when someone enters, and -- to decrease it when someone leaves.
+```c
+#include <stdio.h>
+
+char main(){
+    int peopleInRoom = 0;
+
+    // 3 people enter
+    peopleInRoom++;
+    peopleInRoom++;
+    peopleInRoom++;
+
+    printf("%d\n", peopleInRoom);
+
+    // 1 person leaves
+    peopleInRoom--;
+
+    printf("%d\n", peopleInRoom);
+    return 'K';
+}
+```
+```text
+3
+2
+
+...Program finished with exit code 75
+```
+## Prefix and Postfix
+The ++ and -- operators can be written *before* the variable (prefix, like ++x) or after it (postfix, like x++). On their own, both add 1 to x. The difference shows when you use the value in the same statement.
+- ++x increases x first, and then uses the new value.
+- x++ uses the current value first, and then increases x
+```c
+#include <stdio.h>
+
+char main(){
+    int x = 5;
+    int y = ++x; //x is increased first, then y gets 6
+    printf("x = %d, y= %d\n", x, y); // x = 6, y = 6
+    
+    int a = 5;
+    int b = a++; // b gets 5 first, then a is increased
+    printf("a =%d, b = %d\n", a, b); // a = 6, b = 5
+    return 'K';
+}
+```
+```text
+x = 6, y= 6
+a =6, b = 5
+
+...Program finished with exit code 75
+```
