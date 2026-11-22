@@ -590,3 +590,67 @@ int main(){
     return 0;
 }
 ```
+---
+# **C Decimal Precision**
+## Set decimal precision
+You have probably already noticed that if you print a floating point number, the output will show many digits after the decimal point.
+```c
+# include <stdio.h>
+
+int main(){
+    float myFloatNum = 3.4;
+    double myDoubleNum = 10.99;
+    
+    printf("%f\n", myFloatNum);
+    printf("%lf\n", myDoubleNum);
+    
+}
+```
+```text
+3.400000
+10.990000
+```
+If you want to remove the extra zeros (set decimal precision), you can use a dot(.) followed by a number that specifies how many digits that should be shown after the decimal point.
+```c
+# include <stdio.h>
+
+int main(){
+    
+    float myFloatNum = 3.5;
+    
+    printf("%f\n", myFloatNum); // default will show 6 digits after the decimal point
+    printf("%.1f\n", myFloatNum);  //only show 1 digit
+    printf("%.2f\n", myFloatNum);  //only show 2 digits
+    printf("%.3f\n", myFloatNum);  //only show 3 digits
+    printf("%.4f\n", myFloatNum);  //only show 4 digits
+    return 5;
+}
+```
+```text
+3.500000
+3.5
+3.50
+3.500
+3.5000
+
+...Program finished with exit code 5
+```
+## Rounding
+When you set the precision, **printf()** does not just cut off the extra digits. It *rounds* the number to the nearest value.
+```c
+# include <stdio.h>
+
+int main(){
+    float myNum = 3.14159;
+    
+    printf("%.2f\n", myNum); // 3.14
+    printf("%.3f\n", myNum); // 3.142
+    printf("%.0f", myNum); // 3
+    
+    return 0;
+}
+```text
+3.14
+3.142
+3
+```
