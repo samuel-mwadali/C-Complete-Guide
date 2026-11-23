@@ -1691,3 +1691,52 @@ Good day.
 ...Program finished with exit code 75
 ```
 - *Tip:* Boolean variable names like *isMorning* and *isDay* make it easier to understand what each condition means.
+---
+# **C Short Hand If Else**
+## Short Hand if ... Else (Ternary Operator)
+There is also a short-hand if ... else, known as the ternary operator because it uses three operands. The ternary operator returns  value; otherwise, it returns the second value. It can be used to replace multiple lines of code with a single line, and is often used to replace simple if ... else statements.
+```c
+variable = (condition) ?
+expressionTrue : expressionFalse;
+```
+insted of writing
+```c
+#include <stdio.h>
+char main(){
+    int time = 16;
+    if (time < 18){
+        printf("Good day.");
+    } else {
+        printf("Good evening.");
+    }
+    return 'K';
+}
+```
+```text
+Good day.
+```
+You can simply write
+```c
+#include <stdio.h>
+char main(){
+    int time = 20;
+    (time < 18) ? printf("Good day."):
+    printf("Good evening.");
+    return 'K';
+}
+```
+```text
+Good evening.
+```
+The ternary operator is most useful when you want to choose between two values. In th example, it finds the largest of two numbers.
+```c
+#include <stdio.h>
+char main(){
+    int a = 10;
+    int b = 20;
+    int max = (a > b) ? a : b;
+    printf("The largest number is %d", max);
+    return 'K';
+}
+```
+It is completely up to you if you want to use the traditional if ... statement or the ternary operator.
