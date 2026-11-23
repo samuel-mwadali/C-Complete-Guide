@@ -1806,3 +1806,89 @@ And you are a citizen, so you can vote!
 ## Notes
 - You can nest as many if statements as you want, but avoid making the code too deep - it can become hard to read
 - Nested if is often used together with else and else if for more complex decision making.
+# **C Logical Operators in Conditions**
+## Logical Operators in Conditions
+You can combine or reverse conditions using logical operators. These work together with if, else, and else if to build more complex decisions.
+- &&(AND) - all conditions must be true
+- || (OR) - at least one conditions must be true
+- ! (NOT) - reverses a condition (true -> false, false -> true)
+## AND(&&)
+Use AND (&&) when both conditions must be true
+```c
+#include <stdio.h>
+char main(){
+    int a = 200;
+    int b = 33;
+    int c = 500;
+    if (a > b && c > a){
+        printf("Both conditions are true\n");
+    }
+    return 'K';
+}
+```
+```text
+Both conditions are true
+```
+## OR(||)
+Use OR (||) when at least one of the condtions can be true.
+```c
+#include <stdio.h>
+char main(){
+    int a = 200;
+    int b = 33;
+    int c = 500;
+    if (a > b || a > c){
+        printf("Both conditions are true\n");
+    }
+    return 'K';
+}
+```
+```text
+Both conditions are true
+```
+## NOT(!)
+The NOT operator (!) reverses a condition
+- if a condition is true, ! makes it false
+- if a condition is false, ! makes it true
+This is useful when you want to check that something in not the case:
+```c
+#include <stdio.h>
+char main(){
+    int a = 33;
+    int b = 200;
+    if (!(a > b)){
+        printf("a is NOT greater than b\n");
+    }
+    return 'K';
+}
+```
+```text
+a is NOT greater than b
+```
+## Real-Life Example
+In real programs, logical operators are often used for access control. For example, to get access to a system, there are specific requirements. You must be logged in, and then you either need to be admin, or have a high security clearance (level 1 or 2)
+```c
+#include <stdio.h>
+#include <stdbool.h>
+char main(){
+    bool isLoggedIn = true;
+    bool isAdmin = false;
+    int securityLevel = 1; // 1 = highest
+
+    if (isLoggedIn && (isAdmin || securityLevel <= 2)){
+        printf("Access granted\n");
+    } else {
+        printf("Access denied\n");
+    }
+    return 'K';
+}
+// Try changing securityLevel and isAdmin to test different outcomes:
+// SecurityLevel 1 = Access granted
+// SecurityLevel 2 = Access granted
+// SecurityLevel 3 = Access denied
+// SecurityLevel 4 = Access denied
+// If isAdmin = true, access is granted.
+```
+```text
+Access denied
+```
