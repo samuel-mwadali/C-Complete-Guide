@@ -1329,3 +1329,55 @@ Not logged in: 0
 ...Program finished with exit code 75
 ```
 - Remember, in C 1 mans true and 0 means false. Logical operators often become easier to understand once you start using them inside if statements, which you will learn about in the upcoming chpaters.
+---,
+# **C Operator Precedence**
+## Operator Precedence
+When a calculation contains more than one operator, C follows order of operations rules to decide which part to calculate first.
+For example, multiplication happens before addition.
+```c
+# include <stdio.h>
+char main(){
+    int result1 = 10 - 2 + 5; // (10 - 2) + 5 = 13
+    int result2 = 10 - (2 + 5); // 10 - 7 = 3
+    printf("%d\n", result1);
+    printf("%d\n", result2);
+    return 'K';
+}
+```
+```text
+13
+3
+```
+## Why does this Happen?
+In 2 + 3 + 4, the multiplication is done first, so the answer is 14. If you want the addition to happen first, you must use parentheses (2 + 3) * 4, which gives 20.
+- *Tip:* Always use parenthesis ( ) If you want to make sure the calculation is done in the order you expect. It also makes your code easier to read.
+## Order of Operations
+Here are some common operators in C, from highest to lowest priority
+- () - Parentheses
+- *, /, % - Multiplication, Division, Modulus
+- +, - - Addtion, Subtraction
+- >, <, <=, >= - Commparison
+- ==, != - Equality
+- && - Logical AND
+- || - logical OR
+- = - Assignment
+## Another Example
+Subtraction and addition are done from left to right, unless you add parantheses.
+```c
+# include <stdio.h>
+char main(){
+    int result1 = 10 - 2 + 5;
+    int result2 = 10 - (2 + 5);
+    int result3 = 10 - 2 + 5 - 3;
+    printf("%d\n", result1);
+    printf("%d\n", result2);
+    printf("%d\n", result3);
+    return 'K';
+}
+```
+```text
+13
+3
+10
+```
+- **Remember:** Parentheses always come first. Use them to control the order of your calculations.
