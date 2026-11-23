@@ -1580,3 +1580,50 @@ char main(){
 x is greater than y
 ```
 This can make your code easier to read, especially when the condition is complex or used more than once.
+---
+# **C else**
+## The else Statement
+Use the else statement to specify a block of a code to be executed if the condition is false
+```c
+if (condition){
+    // block of code to be executed if the condition is true
+} else {
+    // block of code to be executed if the condition is false
+}
+```
+In the example below, the program checks the value of *time.* If it less than 18, it prints "Good day." Otherwise, it prints "Good evening"
+```c
+#include <stdio.h>
+char main(){
+    int time = 20;
+    if (time < 18){
+        printf("Good day.");
+    } else {
+        printf("Good evening.");
+    }
+    return 'K';
+}
+```
+```text
+Good evening.
+```
+## Using a boolean variable
+You can also store the condition in a boolean variable and use it in the if .. else statement. This can make the code easier to read.
+```c
+#include <stdio.h>
+#include <stdbool.h>
+char main(){
+    int time = 20;
+    bool isDay = time < 18;
+    if (isDay){
+        printf("Good day.");
+    } else {
+        printf("Good evening.");
+    }
+    return 'K';
+}
+```
+```text
+Good evening.
+```
+- *Tip:* A name like isDay makes it easy to understand what the condition means.
