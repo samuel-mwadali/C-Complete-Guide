@@ -1627,3 +1627,67 @@ char main(){
 Good evening.
 ```
 - *Tip:* A name like isDay makes it easy to understand what the condition means.
+---
+# **C Else If**
+## The else if statement
+Use the else if statement to specify a new condition to test if the first condition is false. You can use else if to check multiple conditions, one after another.
+```c
+if (condition1){
+    // block of code to be executed if condition1 is true
+} else if (condition2){
+    // block of code to be executed if condition1 is false and condition2
+} else {
+    // block of code to be executed if both conditions are false
+}
+```
+The condition are checked from top to bottom. As soon as one condition is true, its block of code runs, and the rest are skipped.
+**Example**
+In the example below, we decide which message to print based on the value of time:
+```c
+#include <stdio.h>
+char main(){
+    int time = 16;
+    if (time < 12){
+        printf("Good morining.");
+    } else if (time < 18){
+        printf("Good day.");
+    } else {
+        printf("Good evening.");
+    }
+    return 'K';
+}
+```
+```text
+Good day.
+
+...Program finished with exit code 75
+```
+**Example explained**
+The value of time is 16. The first condition (time<12) is false, but the second condition (time<18) is true. Because of this, the code inside the else if block runs and "Good day." is printed. If the value of time was 22,none of the conditions would be true, and program would print "Good evening." instead.
+## Using boolean variables
+Just like with if statements, you can store conditions in boolean variables and use them with else if.
+```c
+#include <stdio.h>
+#include <stdbool.h>
+char main(){
+    int time = 16;
+    
+    bool isMorning = time < 12;
+    bool isDay = time < 18;
+    
+    if (isMorning){
+        printf("Good morning.");
+    } else if (isDay){
+        printf("Good day.");
+    } else {
+        printf("Good evening.");
+    }
+    return 'K';
+}
+```
+```text
+Good day.
+
+...Program finished with exit code 75
+```
+- *Tip:* Boolean variable names like *isMorning* and *isDay* make it easier to understand what each condition means.
