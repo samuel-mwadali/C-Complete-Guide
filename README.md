@@ -1299,4 +1299,33 @@ char main(){
 ...Program finished with exit code 75
 ```
 ---
+# **C Logical Operators**
+## Logical Operators
+As with comparison operators, you can also test for true or false values with logical operators. Logical operators are used to determine the logic between variables or values, by combining multiple condtins:
+| Operator | Name | Example | Description |
+| --- | --- | --- | --- |
+| | OR | x > 3 or x < 4 | Returns 1 if both statements are true |
+| && | AND | x > 3 && x < 10 | Returns 1 if both statements are true |
+| ! | NOT | !(x>3 && x<10) | Reverses the result, returns 0 if the result is 1 |
 
+## Real-life Example: logic Check
+The example below shows you how logical operators can be used in real situation, e.g. when checking login status and access rights.
+```c
+# include <stdio.h>
+char main(){
+    int isLoggedIn = 1;
+    int isAdmin = 0;
+    printf("Regular user: %d\n", isLoggedIn && isAdmin);
+    printf("Has access: %d\n",isLoggedIn || isAdmin);
+    printf("Not logged in: %d\n", !isLoggedIn);
+    return 'K';
+}
+```
+```text
+Regular user: 0
+Has access: 1
+Not logged in: 0
+
+...Program finished with exit code 75
+```
+- Remember, in C 1 mans true and 0 means false. Logical operators often become easier to understand once you start using them inside if statements, which you will learn about in the upcoming chpaters.
