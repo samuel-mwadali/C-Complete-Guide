@@ -1381,3 +1381,97 @@ char main(){
 10
 ```
 - **Remember:** Parentheses always come first. Use them to control the order of your calculations.
+# **C Booleans**
+## Booleans
+Very often, in programming, you will need a data type that can only have one of two values, like:
+- YES/NO
+- ON/OFF
+- TRUE/FALSE
+For this, C has a bool data type, which is known as *booleans*. Booleans represent one of two values: *true* and *false*
+## Boolean Variables
+In C, the bool type is not a built-in data type, like *int* or *char*. It was introduced in C99, and you must *include* the following header file to use it.
+```c
+#include <stdbool.h>
+```
+A boolean variable is declared with the *bool* keyword and can take the values *true* or *false*
+```c
+bool isProgrammingFun = true
+bool isFishTasty = false
+```
+Before trying to print the boolean variables, you should know that boolean values are returned as intergers.
+- 1 (or any other number that is not 0) represents true
+- 0 represents false
+Therefore, you can use %d format specifier to print a boolean value.
+```c
+#include <stdio.h>
+#include <stdbool.h>
+char main(){
+    // Create boolean variables
+    bool isProgrammingFun = true;
+    bool isFishTasty = false;
+    
+    // Print boolean values
+    printf("%d\n", isProgrammingFun); // Prints 1 (true)
+    printf("%d", isFishTasty); // Prints 0 (false)
+    return 'K';
+}
+```
+However, it is more common to get boolean values by comparing values and variables.
+## Comparing values and Variables
+Comparing values is useful programming because they help us to find answers and make decisions. For example, you can use a comparisont operator such as the greater than (>) operator to compare two values.
+```c
+#include <stdio.h>
+char main(){
+    printf("%d", 10 > 9); // Prints 1 (true), because 10 is greater than 9
+    return 'K';
+}
+```
+- In C, comparisons return 1 (true) or 0 (false)
+You can also compare two variables.
+```c
+#include <stdio.h>
+char main(){
+    int x = 10;
+    int y = 9;
+    printf("%d", x > y); // Prints 1 (true)
+    return 'K';
+}
+```
+In the example below, we use the equal to (==) operators to compare different values.
+```c
+#include <stdio.h>
+char main(){
+    printf("%d\n", 10 == 10); // Prints 1 (true), because 10 is equal to 10
+    printf("%d\n", 10 == 15); // prints 0 (false), because 10 is not equal to 15
+    printf("%d", 5 == 55); // Prints 0 (false), because 5 is not equal to 55
+    return 'K';
+}
+```
+You are not limited to comparing numbers. You can also compare boolean variables.
+```c
+#include <stdio.h>
+#include <stdbool.h>
+char main(){
+    bool isHumburgerTasty = true;
+    bool isPizzaTasty = true;
+    
+    // Check if both have the same value (both true, or both false)
+    printf("%d", isHumburgerTasty == isPizzaTasty);
+    return 'K';
+}
+```
+- Rememb*er to include the <stdbool.h> header file working with *bool* variables.
+## Storing comparison results
+You can also store the result ot a comparison in *bool* variable
+```c
+#include <stdio.h>
+#include <stdbool.h>
+char main(){
+    int x = 10;
+    int y = 9;
+    bool isGreater = x > y;
+    printf("%d", isGreater); // Prints 1 (true)
+    return 'K';
+}
+```
+- *Note:* It is up to you whether you store the result of a comparison in boolean variable or use the comparison directly. Storing the result can make your code easier to read, especially if you want to reuse it.
