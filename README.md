@@ -1475,3 +1475,39 @@ char main(){
 }
 ```
 - *Note:* It is up to you whether you store the result of a comparison in boolean variable or use the comparison directly. Storing the result can make your code easier to read, especially if you want to reuse it.
+# **C Boolean Example**
+## Real Life Example
+Let's use booleans in a real-life example where we want to find out if a person is old enough to vote. In the example below, we use the >= comparison operator to find out if the age (25) is greater than or equal to the voting age limit, which is set ot 18
+```c
+#include <stdio.h>
+char main(){
+    int myAge = 25;
+    int votingAge = 18;
+    
+    printf("%d", myAge >= votingAge);
+    // Returns 1 (true), meaning 25 year olds are allowed to vote!
+    return 'K';
+}
+```
+An even better approach is to wrap the code above in an if ... else statment, so we can perform different actions depending on the result.
+**Example**
+Output "Old enough to vote!" if myAge is greater than or equal to 18. Otherwise output "Not old enough to vote"
+```c
+#include <stdio.h>
+char main(){
+    int myAge = 17;
+    int votingAge = 18;
+    if (myAge >= votingAge){
+        printf("Old enough to vote!");
+    }else{
+        printf("Not old enough to vote.");
+    }
+    return 'K';
+}
+```
+```text
+Not old enough to vote.
+
+...Program finished with exit code 75
+```
+Booleans are the basis for all comparisons and conditions. You will learn more about conditions (if ... else )
