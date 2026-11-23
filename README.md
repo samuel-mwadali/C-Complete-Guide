@@ -1511,3 +1511,72 @@ Not old enough to vote.
 ...Program finished with exit code 75
 ```
 Booleans are the basis for all comparisons and conditions. You will learn more about conditions (if ... else )
+---
+# **If ... Else**
+## Conditions and if Statements
+You already know that C supports familiar comparison conditions from mathematics, such as:
+- less than a < b
+- less than or equal to a <= b
+- greater than a > b
+- equal to a == b
+- not equal to a != b
+You can use these conditions to perform different actions for different decisions. C has the following conditional statements.
+- Use if to specify a block of code to be executed, if a specified condtion is true
+- Use else to specify a block of code to be executed, if the same codition is false
+- Use else if to specify a new condition to test, if the condition is false
+- Use switch to specify many alternative blocks of code to be executed
+## The if Statement
+Use the if statement to specify a block of code to be executed if a condition is true
+```c 
+if (condition){
+    // block of code to be executed if the condition is true
+}
+```
+- **Note:** if is written in lowercase letters. Uppercase letters (If or IF) will generate an error.
+In the Example below, we test two values to find out if 20 is greater than 18. If the condition is true, we print a message.
+```c
+#include <stdio.h>
+char main(){
+    if (20 > 18){
+        printf("20 is greater than 18");
+    }
+    return 'K';
+}
+```
+```text
+20 is greater than 18
+```
+We can also test variables:
+```c
+#include <stdio.h>
+char main(){
+    int x = 20;
+    int y = 18;
+    if (x > y){
+        printf("x is greater than y");
+    }
+    return 'K';
+}
+```
+```text
+x is greater than y
+```
+## Using a Boolean Variable
+Since the condition in an if statement must be either true or false, you can store the result in a boolean variable instead of writing the comparison directly.
+```c
+#include <stdio.h>
+#include <stdbool.h>
+char main(){
+    int x = 20;
+    int y = 18;
+    bool isGreater = x > y;
+    if (isGreater){
+        printf("x is greater than y");
+    }
+    return 'K';
+}
+```
+```text
+x is greater than y
+```
+This can make your code easier to read, especially when the condition is complex or used more than once.
