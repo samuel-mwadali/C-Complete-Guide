@@ -2313,3 +2313,57 @@ char main(){
     return 0;
 }
 ```
+
+# **C Nested Loops**
+## Nested Loops
+It is also possible to place a loop inside another loop. This is called a nested loop. The 'inner loop' will be executed one time for each iteration of the "outer loop".
+```c
+#include <stdio.h>
+char main(){
+    int i, j;
+    // Outer loop
+    for (i = 1; i <= 3; ++i){
+        printf("Outer: %d\n", i); // Executes 2 times
+        for(j = 1; j <= 3; ++j){
+            printf(" inner: %d\n", j); // Executes  6 times (2 * 3)
+        }
+    }
+    return 'K';
+}
+```
+```text
+Outer: 1
+ inner: 1
+ inner: 2
+ inner: 3
+Outer: 2
+ inner: 1
+ inner: 2
+ inner: 3
+Outer: 3
+ inner: 1
+ inner: 2
+ inner: 3
+```
+## Multiplication Table Example
+This example uses nested loops to print a simple multiplication table (1 to 3):
+```c
+#include <stdio.h>
+char main(){
+    int i, j;
+    // Outer loop
+    for (i = 1; i <= 3; ++i){
+        for(j = 1; j <= 3; ++j){
+            printf("%d", i * j); // Executes  6 times (2 * 3)
+        }
+        printf("\n");
+    }
+    return 'K';
+}
+```
+```text
+123
+246
+369
+```
+Nested loops are useful when working with tables, matrices or multi-dimensional data structures
