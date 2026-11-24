@@ -2121,3 +2121,65 @@ char main(){
 }
 ```
 - **Note:** A while loop may never run if the condition is false from the start. In the next chapter, you will learn about the do while loop, which always runs the code at least once before checking the condition.
+# **Do/While Loop**
+## The Do/While Loop
+The do/while loop is a variant of the while loop. This loop will execute the code block once, before checking if the condition is true, then it will repeat the loop as long as the condition is true.
+```c
+do{
+    //code block to be executed
+}
+while(condition);
+```
+The example below uses a do/while loop. The loop will always be executed at least once, even if the condition is a false, because the code block is executed before the condition is tested.
+```c
+#include <stdio.h>
+char main(){
+    int i = 0;
+    do{
+        printf("%d\n", i);
+        i ++;
+    }
+    while (i < 5);
+    return 'K';
+}
+```
+- Do not forget to increase the variable used in the condition, otherwise the loop will never end!
+## Condition is False from the start
+In the example above, the condition i < 5 was true at the beginning, so the loop executed multiple times. But what if the condition is false right from the start?
+In the example below, the variable i starts at 10, so the condition i < 5 is false immediately - yet the do/while loop stills runs once:
+```c
+#include <stdio.h>
+char main(){
+    int i = 0;
+    do{
+        printf("i is %d\n", i);
+        i ++;
+    }
+    while (i < 5);
+    return 'K';
+}
+```
+```text
+i is 0
+i is 1
+i is 2
+i is 3
+i is 4
+```
+## Summary
+The do/while loop always runs at least once, even if the condition is already false. This is different from a regular while loop, which would skip the loop entirely if the condition is false at the start.<br> This behaviour makes do/while useful when you want to ensure something happens at least once, like showing a message or asking  for user input.
+## Practical Esample: User Input
+This example keeps asking the user to enter a positive number. The loop stops when the user enters 0 or a negative number.
+```c
+#include <stdio.h>
+char main(){
+    int i = 0;
+    do{
+        printf("i is %d\n", i);
+        i ++;
+    }
+    while (i < 5);
+    return 'K';
+}
+```
+- **Note:** You will learn about the scanf() function and user input in a later chapter.
