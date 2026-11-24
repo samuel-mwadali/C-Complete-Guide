@@ -2686,3 +2686,33 @@ char main(){
     return 'K';
 }
 ```
+# **C Array Loop**
+## Loop through an Array
+You can use a for loop to go through the elements of an array by writing the size of the array by writing the size of the array in the loop condition (in this example the array has 4 elements, so we use i < 4). However, this is not ideal, since it will only work for arrays of a specified size.
+```c
+#include <stdio.h>
+char main(){
+    int myNumbers[] = {25, 50, 75, 100};
+    int i;
+    for (i = 0; i < 4; i++){
+        printf("%d\n", myNumbers[i]);
+    }
+    return 'K';
+}
+```
+## Making Better Loops
+In the previous chapter, you learned how to calculate the number of elements in an array using the sizeof formula. Now we can use that to write loops that work for arrays of any size. This is more flexible and sustainable.
+```c
+#include <stdio.h>
+char main(){
+    int myNumbers[] = {25, 50, 75, 100, 150};
+    int length = sizeof(myNumbers) / sizeof(myNumbers[0]);
+    int i;
+    for (i = 0; i < length; i++){
+        printf("%d\n", myNumbers[i]);
+    }
+    return 'K';
+}
+```
+This loop will automatically work no matter how many elements the Array has!
+- **Summary:** Always use the sizeof fomula when looping through arrays. It makes your loops adapt to the array size automatically.
