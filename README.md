@@ -2367,3 +2367,73 @@ char main(){
 369
 ```
 Nested loops are useful when working with tables, matrices or multi-dimensional data structures
+# **C For Loop Examples**
+## Real-Life Examples
+To demonstrate a practical example of the for loop, let's create a program that counts to 100 by tens.
+```c
+#include <stdio.h>
+char main(){
+    int i;
+    for (i = 0; i <= 100; i += 10){
+    printf("%d\n", i);
+}
+    return 'K';
+}
+```
+```text
+0
+10
+20
+30
+40
+50
+60
+70
+80
+90
+100
+```
+In this example, we create a program that only print even numbers between 0 and 10 (inclusive).
+```c
+#include <stdio.h>
+char main(){
+    int i;
+    for(i = 0; i <= 10; i = i + 2){
+        printf("%d\n", i);
+    }
+    return 'K';
+}
+```
+```text
+0
+2
+4
+6
+8
+10
+```
+And in this example, we create a program that prints the multiplication table for a specified number:
+```c
+#include <stdio.h>
+char main(){
+    int number = 2;
+    int i;
+    // Print the multiplication table for the number 2
+    for (i = 1; i <= 10; i++){
+            printf("%d x %d = %d\n", number, i, number * i);
+            }
+    return 'K';
+}
+```
+```text
+2 x 1 = 2
+2 x 2 = 4
+2 x 3 = 6
+2 x 4 = 8
+2 x 5 = 10
+2 x 6 = 12
+2 x 7 = 14
+2 x 8 = 16
+2 x 9 = 18
+2 x 10 = 20
+```
