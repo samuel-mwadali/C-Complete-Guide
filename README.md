@@ -2063,3 +2063,61 @@ char main(){
 Weekend
 ```
 Code 6 has no code of its own, so C falls through to the code under 7. The means that both 6 and 7 print "Weekend". For all values, the default code runs.
+---
+# **C While Loop**
+## Loops
+Loops can execute a block of code as long as a specified condition is true. Loops are handy because they save time, reduce errors, and they make code more readable.
+## While loops
+The whle loop repeats a block of code as long as a specified condition is true
+```c
+while (condition){
+    // code block to be executed
+}
+```
+In the example below, the code in the loop will run, over and over again, as long as a variable (i) is less than 5.
+```c
+#include <stdio.h>
+char main(){
+    int i = 0;
+    while (i < 5){
+        printf("%d", i);
+        i++;
+    }
+    return 'K';
+}
+```
+```text
+01234
+```
+- **Note:** Do not forget to increase the variable used in the condition (i++), otherwise the loop will never end! Do you wonder why we use the letter i as a variable name? It's a counter variable and a common choice in simple loops because it's short, traditional, and stands for 'index' or 'iterator'.
+## Countdown Example
+You can also use a while loop to count down. This example counts from 3 to 1, and then prints "Go!" at the end.
+```c
+#include <stdio.h>
+char main(){
+    int countdown = 3;
+    while (countdown > 0){
+        printf("%d\t", countdown);
+        countdown --;
+    }
+    printf("Go! \n");
+    return 'K';
+}
+```
+```text
+3       2       1       Go!
+```
+## While Loop with False condition
+In the previous examples, the condition was true at the start, so the loop ran one or more times. But if the condition is false at the beginning, the code inside the loop will never run:
+```c
+#include <stdio.h>
+char main(){
+    int i = 10;
+    while (i < 5){
+        printf("This will never be printed\n");
+        i ++;
+    }
+    return 'K';
+}
+```
+- **Note:** A while loop may never run if the condition is false from the start. In the next chapter, you will learn about the do while loop, which always runs the code at least once before checking the condition.
