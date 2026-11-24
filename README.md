@@ -1892,3 +1892,41 @@ char main(){
 ```text
 Access denied
 ```
+# **C If ... Else Examples**
+## Real-Life Examples
+This example shows how you can use if ... else to "open a door" if the user enters the correct code.
+```c
+#include <stdio.h>
+char main(){
+    int doorCode = 2340;
+    if (doorCode = 2340){
+        printf("Correct code.\nThe door is now open.");
+    } else {
+        printf("Wrong code.\nThe door remains closed.");
+    return 'K';
+}
+}
+```
+```text
+Correct code.
+The door is now open.
+```
+This example shows that how you can use if ... else to find out if a number is positive or negative:
+```c
+#include <stdio.h>
+char main(){
+    int myNum = -10;
+    // Is this a posive number or negative number?
+    if (myNum > 0){
+        printf("The value is a positve number.");
+    } else if (myNum){
+        printf("The value is a negative number.");
+    } else {
+        printf("The value is 0.");
+    }
+    return 'K';
+}
+```
+```text
+The value is a negative number.
+```
