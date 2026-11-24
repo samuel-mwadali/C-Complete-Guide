@@ -2183,3 +2183,66 @@ char main(){
 }
 ```
 - **Note:** You will learn about the scanf() function and user input in a later chapter.
+# **C While Loop Examples**
+## Real-life Examples
+To demonstrate a practical example of the while loop, we have created a simple "countdown" program
+```c
+#include <stdio.h>
+char main(){
+    int countdown = 3;
+    
+    while (countdown > 0){
+        printf("%d\n", countdown);
+        countdown--;
+    }
+    printf("Happy New Year!!\n");
+    return 'K';
+}
+```
+In this example, we create a program that only print even numbers between 0 and 10 (inclusive).
+```c
+#include <stdio.h>
+char main(){
+    int i = 0;
+    while (i <= 10){
+        printf("%d\n", i);
+        i += 2;
+    }
+    return 'K';
+}
+```
+In this example we use a while loop to reverse some numbers.
+```c
+#include <stdio.h>
+char main(){
+    // A variable with some specific numbers
+    int numbers = 12345;
+    // A variable to store the reversed number
+    int revNumbers = 0;
+    // Reverse and reorder the numbers
+    while (numbers){
+        // Get the last number of 'numbers' and add it to 'revNumber'
+        revNumbers = revNumbers * 10 + numbers % 10;
+        // Remove the last number of 'numbers'
+        numbers /= 10;
+    }
+    return 'K';
+}
+```
+To demonstrate a practical example of the while loop combined with an if else statement, let's say we play a game of Yatzy:
+```c
+#include <stdio.h>
+char main(){
+    int dice = 1;
+    while (dice <= 6){
+            if (dice < 6){
+                printf("No Yatzy\n");
+            } else {
+                printf("Yatzy!\n");
+                }
+    }
+    dice = dice + 1;
+    return 'K';
+}
+```
+If the loop passes the values ranging from 1 to 5, it prints "No Yatzy". Whenever it passes the value 6, it prints "Yatzy!".
