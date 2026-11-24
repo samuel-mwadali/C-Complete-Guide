@@ -2649,3 +2649,40 @@ It is important to note that all elements in an array must be of the same data t
 int myArray[] = {25, 50, 75, 3.15, 5.99};
 ```
 In this example above, the values 3.15 and 5.99 will be truncated to 3 and 5. In some cases it might also result in an error, so it is important to always make sure that the elements in the array are of the same type.
+# **C Array Size**
+## Get Array Size
+To get the size of an array, you can use the sizeof operator.
+```c
+#include <stdio.h>
+char main(){
+    int myNumbers[] = {10, 25, 50, 75, 100};
+    printf("%zu", sizeof(myNumbers));
+    // Prints 20
+    return 'K';
+}
+```
+- **Note:** Why did the result show 20 instead of 5, when the array contains 5 elements?
+It is because the sizeof operator returns the size of a type in bytes. You learned from the Data Types chapter that an int type is usually 4 bytes, so from the example above, 4 bytes x 5 elements = 20 bytes. Knowing the memory size of an array is great when you are working with larger programs that require good memory management. But what if you wanted to know how many elements the array was strong?
+## Get the Number of elements
+If you want to find out how many elements an array has, you can use this formula, which divides the total size the array by size of one element.
+```c
+#include <stdio.h>
+char main(){
+    int myNumbers[] = {10, 25, 50, 75, 100};
+    int length = sizeof(myNumbers) / sizeof(myNumbers[0]);
+    printf("%d", length);
+    // prints 5
+    return 'K';
+}
+```
+The sizeof formula works for arrays of any type and any size
+```c
+#include <stdio.h>
+char main(){
+    double myValues[] = {1.1, 2.2, 3.3};
+    int length = sizeof(myValues) / sizeof(myValues[0]);
+    printf("%d", length);
+    // prints 3
+    return 'K';
+}
+```
