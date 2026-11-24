@@ -1930,3 +1930,136 @@ char main(){
 ```text
 The value is a negative number.
 ```
+# **C Switch**
+## Switch statement
+Instead of writing many if ... else statements, you can use the switch statement. The switch statements selects one of many code blocks to be executed.
+```c
+switch (expression){
+    case x:
+    // code block
+    break;
+    casey:
+    // code block
+    break;
+    defalult:
+    // code block
+}
+```
+This is how it works:
+- The switch expression is evaluated once
+- The value of the expression is compared with the values of each case
+- If there is a match, the associated block of code is executed.
+- The break statement breaks out of switch block and stops the execution
+- The default statement is optional, and specifies some code to run if there is no case match
+The example below uses the weekday number to calculate the weekly name.
+```c
+#include <stdio.h>
+char main(){
+    int day = 4;
+    switch (day){
+        case 1:
+            printf("Monday");
+            break;
+        case 2:
+            printf("Tuesday");
+            break;
+        case 3:
+            printf("Wednesday");
+            break;
+        case 4:
+            printf("Thurday");
+            break;
+        case 5:
+            printf("Friday");
+            break;
+        case 6:
+            printf("Saturday");
+            break;
+        case 7:
+            printf("Sunday");
+    }
+    return 'K';
+}
+```
+```text
+Thurday
+```
+## The break keyword
+When C reaches a break keyword, it breaks out of the switch block. This will stop the execution of more code and case tessting inside the block. Without break, C does not stop at the end of the matching case. It continues to run the code in the next cases too, until it reaches a break or the end of the switch. This is called **fall-through.**
+```c
+#include <stdio.h>
+char main(){
+    int day = 2;
+    switch (day){
+        case 1:
+            printf("Monday");
+            break;
+        case 2:
+            printf("Tuesday");
+        case 3:
+            printf("Wednesday");
+            break;
+        case 4:
+            printf("Thurday");
+            break;
+        case 5:
+            printf("Friday");
+            break;
+        case 6:
+            printf("Saturday");
+            break;
+        case 7:
+            printf("Sunday");
+    }
+    return 'K';
+}
+```
+```text
+TuesdayWednesday
+```
+Here, case 2 matches, so "Tuesday" is printed. There is no break, so C continues into case 3 and also prints "Wednesday". Then it reaches a break and stops.
+- *Tip:* End each case with break, unless you want the code to continue into the next case.
+## The default Keyword
+The default keyword specifies some code to run if there is no case match:
+```c
+#include <stdio.h>
+char main(){
+    int day = 4;
+    switch (day) {
+        case 6:
+        printf("Today is Saturday");
+        break;
+        case 7:
+        printf("Today is Sunday");
+        break;
+        default:
+        printf("Looking forward to the Weekend");
+    }
+    return 'K';
+}
+```
+```text
+Looking forward to the Weekend
+```
+- *Note:* The default case is usually written last in the switch. When it is last, it does not need a break.
+## Combine cases
+Sometimes, several values should run the same code. Then you can write the cases after each other, and let them share one block of code.
+```c
+#include <stdio.h>
+char main(){
+    int day = 6;
+    switch (day) {
+        case 6:
+        case 7:
+        printf("Weekend");
+        break;
+        default:
+        printf("Weekday");
+    }
+    return 'K';
+}
+```
+```text
+Weekend
+```
+Code 6 has no code of its own, so C falls through to the code under 7. The means that both 6 and 7 print "Weekend". For all values, the default code runs.
