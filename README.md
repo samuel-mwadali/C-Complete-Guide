@@ -3474,3 +3474,21 @@ Jocelyn Binary
 Hello Jocelyn Binary
 ```
 Use the scanf() function to get a single word as input, and use fgets() for multiple words.
+---
+# **C Memory Address**
+## Memory Address
+When a variable is created in C, its value is stored somewhere in the computer's memory. The memory address is the location of where the variable is stored. To get the memory address of a variable, use the reference operator (&), and print it with hte %p format specifier.
+```c
+#include <stdio.h>
+int main(){
+    int myAge = 43;
+    printf("%p", &myAge);
+    return 0;
+}
+```
+```text
+000000B26C1FFBEC
+```
+- **Note:** The momory address is in hexadecimal form (0x). You will probably not get the same result in your program, as this depends on where the variable is stored on your computer.
+- *Tip:* You have already used the & operator in the user input chapter. scanf("%d", &myNum) It gives scanf() the memory address of myNum, so it knows where to store the number that the user types.
+A variable that stores a memory address is called a pointer. Pointers let you work directly with data in the computer's memory and they are one of the things that make C stand out from other programming languages, like Python and Java.
