@@ -3120,3 +3120,111 @@ int main(){
 -4
 ```
 **Note:** When the strings are not equal, the exact number can be different on different compilers. That is why you should only check if the result is 0 or not.
+---
+# **C Character Functions**
+## Character Functions
+When you create a password on a website, it often checks the characters you type. Is there a digit? Is there an uppercase letter? In C, you can check and change single characters with the character functions in the <type.h> header file. To use them, include the header in your program.
+```c
+#include <ctype.h>
+```
+For example, isdigit() checks if a character is a digit (0 to 9)
+```c
+# include <stdio.h>
+# include <ctype.h>
+int main(){
+    char c = '7';
+    if (isdigit(c)){
+        printf("%c is a digit\n", c);
+    }
+    return 0;
+}
+```
+```text
+7 is a digit
+```
+The functions that check a character return a non-zero value(true) if the answer is yes, and 0 (false) if not. That is why you can use them directly in if statement.
+## Check Characters
+Here are the most common functions to check a character.
+| Function | Returns true if the character is | Examples |
+| --- | --- | --- |
+| isalpha() | a letter | 'a', 'Z' |
+| isdigit() | a digit | '0', '7' |
+| isalnum() | a letter or a digit | 'a', '7' |
+| isupper() | an uppercase letter | 'A', 'Z' |
+| islower() | a lowercase letter | 'a', 'z' |
+| isspace() | white space, like a space, a tab or a new line | ' ', '\n' |
+
+This example counts the letters and digits in a string. It loops through the string and checks each character.
+```c
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h.>
+int main(){
+    char text[] = "Room 42";
+    int letters = 0;
+    int digits = 0;
+    int i;
+
+    for (i = 0; i < strlen(text); i++){
+        if (isalpha(text[i])){
+            letters++;
+        } else if (isdigit(text[i])){
+            digits++;
+        }
+    }
+    printf("Letters: %d\n", letters);
+    printf("Digits: %d\n", digits);
+    return '0';
+}
+```
+```text
+Letters: 4
+Digits: 2
+```
+The space in "Room 42" is not a letter or a digit, so it is not counted.
+## Change Characters
+Use toupper() to change a letter to uppercase, and tolower() to change it to lowercase.
+```c
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+int main(){
+    printf("%c\n", toupper('a'));
+    printf("%c\n", tolower('B'));
+    printf("%c", toupper('7'));
+    return '0';
+}
+```
+```text
+A
+b
+7
+```
+Characters that are not letters, like '7', are not changed.
+<br>To change a whole string, change one character at time in a loop.
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+int main(){
+    char text[] = "Hello World";
+    int i;
+    for (i = 0; i < strlen(text); i++){
+        text[i] = toupper(text[i]);
+    }
+    printf("%s\n", text);
+    return '0';
+}
+```
+```text
+HELLO WORLD
+```
+## Real-Life Example
+Check if a password has at least one uppercase letter and one digit
+```c
+
+```
+```text
+The password is OK
+```
