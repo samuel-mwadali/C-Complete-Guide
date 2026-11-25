@@ -2837,3 +2837,42 @@ Multidimensional arrays are useful when your data is arranged in rows and column
 Each extra dimension adds another level of structure.
 - **2D arrays** (like int scores[3][4]) are great for storing things like scores, game boards or spreadsheets
 - **3D arrays** (like cube[2][3][4]) can represent more complex structures like a set of tables or levels in a game.
+# **C Strings**
+## Strings
+Strings are used for storing text, characters. For example, "Hello World!" is a string of characters. Unlike many other programming languages, C does no have a String type to easily create string variables. Instead, you must use the char type and create an array of characters to make a string in C
+```c
+char greetings[] = "hello World!";
+```
+Note that you have to use double quotes("")
+To output the string, you can use the printf() function together with the format specifier %s to tell c that we are now working with strings:
+```c
+char greetings[] = "Hello World!";
+printf("%s", greetings);
+```
+## Accessing Strings
+Since strings are actually arrays in C,you can access a string by referring to its index number inside square brackets[],
+The example prints the first character (0) in greetings.
+```c
+char greetings[] = "Hello world!"
+printf("%c", greetings[0]);
+```
+Note that we have to use the %c format specifier to print a single character.
+## Modify Strings
+To change the value of a specific character in string, refer to the index number, and use single quotes.
+```c
+#include <stdio.h>
+int main(){
+    char greetings[] = "Hello World!";
+    greetings[0] ='J';
+    printf("%s", greetings);
+    // Outputs Jello World! instead of Hello World!
+    return 0;
+}
+```
+## Real-Life Example
+Use strings to create a simple welcome message:
+```c
+char message[] = "Good to you,";
+char fname[] = "Binary";
+printf("%s %s!", message, fname);
+```
