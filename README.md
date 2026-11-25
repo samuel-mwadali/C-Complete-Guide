@@ -3223,7 +3223,30 @@ HELLO WORLD
 ## Real-Life Example
 Check if a password has at least one uppercase letter and one digit
 ```c
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+int main(){
+    char password[] = "Secret";
+    int hasUpper = 0;
+    int hasDigit = 0;
+    int i;
 
+    for (i = 0; i < strlen(password); i++){
+        if (isupper(password[i])){
+            hasUpper = 1;
+        }
+        if (isdigit(password[i])){
+            hasDigit = 1;
+        }
+    }
+    if (hasUpper && hasDigit){
+        printf("The password is OK\n");
+    } else {
+        printf("The password needs an uppercase letter and digit\n");
+    }
+    return '0';
+}
 ```
 ```text
 The password is OK
