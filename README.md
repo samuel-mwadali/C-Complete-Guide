@@ -3367,3 +3367,110 @@ int main(){
 Jenny is not on the guest list
 ```
 ---
+# **C User Input**
+## User Input
+You have already learned that printf() is used to output values in C. To get user input, you can use the scanf() function.
+```c
+#include <stdio.h>
+int main(){
+    // Create an integer variable that will store the number we get from the user
+    int myNum;
+
+    // Ask the user to type a number
+    printf("Type a number: \n");
+
+    // Get and save the number the user types
+    scanf("%d",&myNum);
+
+    // Output the number the user typed
+    printf("Your number is: %d", myNum);
+    return 0;
+}
+```
+```text
+Type a number:
+3560
+Your number is: 3560
+```
+The scanf(), function takes two arguments, the format specifier of the variable (%d in example above) and the memory address of the variable (&myNum). The & is called the reference operator. It gives the memory address of myNum, so scanf() knows where to store the number.
+## Multiple Inputs
+The scanf() function also allows multiple inputs(an integer and a character in the following)
+```c
+#include <stdio.h>
+int main(){
+    // Create an int and a char variable
+    int myNum;
+    char myChar;
+
+    // Ask the user to type a number AND a character
+    printf("Type a number AND a character and press enter: \n");
+
+    // Get and save the number AND character the user types
+    scanf("%d %c", &myNum, &myChar);
+
+    // Print the number
+    printf("Your number is: %d\n", myNum);
+
+    // Print the character
+    printf("Your character is: %c\n", myChar);
+    return 0;
+}
+```
+## Take String Input
+You can also get a string entered by the user.
+```c
+#include <stdio.h>
+int main(){
+    // Create a string
+    char firstname[30];
+
+    // Ask the user to input some text
+    printf("Enter your first name: \n");
+
+    // Get and save the next
+    scanf("%s", firstname);
+
+    // Output the text
+    printf("Hello %s", firstname);
+    return 0;
+}
+```
+- *Note:* When you use scanf() with a string, the array must be big enough for the text (we used 30, which is enough for most first names).
+You also do not use the reference operator (&) with strings, because the name of an array already gives its memory address.
+However, the scanf() function has some limitations: it stops reading at the first whitespace (a space, a tab or a new line), which means that it  can only read a single word(even if you type many words). For example
+```c
+#include <stdio.h>
+int main(){
+    char fullName[30];
+
+    printf("Type your full name: \n");
+    scanf("%s", fullName);
+
+    printf("Hello %s", fullName);
+    return 0;
+}
+```
+```text
+Type your full name:
+jocelyn binary
+Hello jocelyn
+```
+From the example above, you would expect the program to print "jocelyn binary", but it only prints "jocelyn". That's why, when working with strings, we often use the fgets() function to read a line of text. Note that you must include the following arguments: the name of the string variable, sizeof(string_name), and stdin(standard input, which is usually the keyboard)
+```c
+#include <stdio.h>
+int main(){
+    char fullName[30];
+
+    printf("Type your full name: \n");
+    fgets(fullName, sizeof(fullName), stdin);
+
+    printf("Hello %s", fullName);
+    return 0;
+}
+```
+```text
+Type your full name:
+Jocelyn Binary
+Hello Jocelyn Binary
+```
+Use the scanf() function to get a single word as input, and use fgets() for multiple words.
