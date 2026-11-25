@@ -2876,3 +2876,42 @@ char message[] = "Good to you,";
 char fname[] = "Binary";
 printf("%s %s!", message, fname);
 ```
+---
+# **C The Null Character**
+## The Null Character \0
+Every string in C ends with a special character.\0, known as the null character. It tells C where the string ends. You do not see it, and you do not have to write it when you create a string with double quotes, because C adds it for you. This is why the string "Hello" uses 6 characters of memory, not 5.
+```c
+char greetings = "Hello";
+printf("%zu", sizeof(greetings));
+// Outputs 6
+```
+## Another way of Creating Strings
+In the examples above, we used a stirng literal (text inside double quotes) to create a string variable. This is the easiest way to create a string C.
+```c
+char greetings[] = "Hello World!";
+// "Hello World!" is a string literal.
+```
+You should also that you can create a string with a set of characters. This example will produce the same string as the string literal above.
+```c
+#include <stdio.h>
+int main(){
+    char greetings[] = {'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd', '!', '\0'};
+    printf("%s", greetings);
+    return '0';
+    // Output Hello World!
+}
+```
+Why do we include the \0 character at the end?
+When you create a string from single characters, you must add the null character yourself. C only adds it for you when you use double quotes. Without it, C does not know where the strings ends.
+## Differences
+The difference between the two ways of creating strings, is that the first method is easier to write, and you do not have to include \0 character, as C will do it for you. You should note that the size of both arrays is the same. They both have 13 characters (space also counts as a character by the way), including the \0 character.
+```c
+#include <stdio.h>
+int main(){
+    char greetings[] = {'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd', '!', '\0'};
+    char greetings2[] = "Hello World!";
+    printf("%zu\n", sizeof(greetings));
+    printf("%zu", sizeof(greetings2));
+    return '0';
+}
+```
