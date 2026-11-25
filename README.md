@@ -2915,3 +2915,34 @@ int main(){
     return '0';
 }
 ```
+# **C String and Loops**
+## Loop Through a String
+You can also loop through the characters of string, using a for loop.
+```c
+#include <stdio.h>
+int main(){
+    char carName[] = "Volvo";
+    int i;
+    for (i = 0; i < 5; ++i){
+        printf("%c", carName[i]);
+    }
+    return '0';
+}
+```
+Instead of writing the length of the string in the loop condition (i < 5), you can use the strLen() function. It returns the number of characters in a string, and it is part of the <string.h> header file (you will learn more about it in the String Functions.)
+```c
+#include <stdio.h>
+#include <string.h>
+int main(){
+    char carName[] = "Volvo";
+    int length = strlen(carName);
+    int i;
+
+    for (i = 0; i < length; ++i){
+        printf("%c", carName[i]);
+    }
+    return '0';
+}
+```
+- **Note:** The sizeof formula from the Array loops chapter does not work as well for strings. sizeof also conts the \0 character at the end of the string, so it gives 6 for "Volvo" instead of 5.
+
