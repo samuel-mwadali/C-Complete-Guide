@@ -2945,4 +2945,61 @@ int main(){
 }
 ```
 - **Note:** The sizeof formula from the Array loops chapter does not work as well for strings. sizeof also conts the \0 character at the end of the string, so it gives 6 for "Volvo" instead of 5.
+---
+# **c Special Characters**
+## String - Special Characters
+Because strings must be writtten within quotes, C will misunderstand this string, and generate an error.
+```c
+char txt[] = "We are the so-called "Vikings" from the moth.";
+```
+The solution to avoid this problem, is to use the backslash escape character. The backslash (\) excape character turns special characters into string characters.
+| Escape character | Result | Description |
+| --- | --- | --- |
+| \' | ' | Single quote |
+| \" | " | Double quote |
+| \\ | \ | Backslash |
+The sequence \" inserts a double quote in a string:
+```c
+#include <stdio.h>
+int main(){
+    char txt[] = "We are the so-called \"Vikings\" from the north.";
+    printf("%s", txt);
+    return 0;
+}
+```
+```text
+We are the so-called "Vikings" from the north.
+```
+The sequence \' inserts a single quote in a string.
+```c
+#include <stdio.h>
+int main(){
+    char txt[] = "It\'s alright.";
+    printf("%s", txt);
+    return 0;
+}
+```
+```text
+It's alright.
+```
+- **Note:** Inside double qoutes, a single qoute also works without the backlash: "It's alright." The \' sequence is needed when you write a single quote as a *char*, inside single quotes. char qoute = '\'';
+The sequence \\ inserts a single backlash in a string.
 
+```C
+#include <stdio.h>
+int main(){
+    char txt[] = "The character \\ is called backlash.";
+    printf("%s", txt);
+    return 0;
+}
+```
+```text
+The character \ is called backlash.
+```
+Other popular escape characters in C are:
+| Escape Character | Result |
+| --- | --- |
+| \n | New Line |
+| \t | Tab |
+| \0 | Null |
+---
