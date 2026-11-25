@@ -3251,3 +3251,119 @@ int main(){
 ```text
 The password is OK
 ```
+---
+# **C Arrays of Strings**
+## Arrays of Strings
+A string is an array of characters. When you want to store a list of words, like names of fruits, you can use an array of strings. In C, an array of strings is a two-dimensional array, of characters.
+```c
+#include <stdio.h>
+int main(){
+    char fruits[3][10] = {"Apple", "Banana", "Cherry"};
+    printf("%s\n", fruits[0]);
+    return '0';
+}
+```
+```text
+Apple
+```
+The first number[3] is how many strings the array can hold. The second number[10] is the size of each string, including the \0 at the end. So each fruit can have up to 9 letters
+## Loop through an Array of strings
+Use a for loop to print all the strings in the array
+```c
+#include <stdio.h>
+int main(){
+    char fruits[3][10] = {"Apple", "Banana", "Cherry"};
+    int i;
+    for (i = 0; i < 3; i++){
+        printf("%s\n", fruits[i]);
+    }
+    return '0';
+}
+```
+```text
+Apple
+Banana
+Cherry
+```
+- **Note:** Do not use strlen() here. it cuonts the characters in one string, not the number of strings. To get the number of strings, use sizeof(fruits) / sizeof(fruits[0]) (30/10 = 3)
+```c
+#include <stdio.h>
+int main(){
+    char fruits[3][10] = {"Apple", "Banana", "Cherry"};
+    int count = sizeof(fruits) / sizeof(fruits[0]);
+    int i;
+
+    printf("Number of strings: %d\n", count);
+
+    for (i = 0; i < count; i++){
+        printf("%s\n", fruits[i]);
+    }
+    return '0';
+}
+```
+```text
+Number of strings: 3
+Apple
+Banana
+Cherry
+```
+## Accessing a Single Character
+To access one character, use two indexes; the first one picks the string, and the second one picks the character in that string. For example, fruits[1][0] is the first character of the second string.
+```c
+#include <stdio.h>
+int main(){
+    char fruits[3][10] = {"Apple", "Banana", "Cherry"};
+    printf("%c\n", fruits[1][0]);
+    return '0'; // Outputs B
+}
+```
+## Change a string
+You cannot use = to give a string in the array a new value
+```c
+fruits[0] = "Mango"; // Error
+```
+Use the strcpy() function instead
+```c
+#include <stdio.h>
+#include <string.h>
+int main(){
+    char fruits[3][10] = {"Apple", "Banana", "Cherry"};
+
+    strcpy(fruits[0], "Mango");
+    printf("%s\n", fruits[0]);
+    return 0;
+}
+```
+```text
+Mango
+```
+- **Note:** The new string must fit in the row. "Mango" needs 6 characters(5 letters and \0), so it fits in 10. "Watermelon" needs 11, so it does not.
+## Real-Life Example
+Check if a name is on guest list. In this example, we check if "Jenny" is on the list. The program compares the name with each string in the array, using strcmp(). it returns 0 when two strings are equal.
+```c
+#include <stdio.h>
+#include <string.h>
+int main(){
+    char guests[4][20] = {"liam", "Anja", "Olivia"};
+    char name[] = "Jenny";
+    int found = 0;
+    int i;
+
+    for (i = 0; i < 4; i++){
+        if (strcmp(guests[i], name) == 0){
+            found = 1;
+            break;
+        }
+    }
+    if (found){
+        printf("%s is on the guest list\n", name);
+    } else {
+        printf("%s is not on the guest list\n", name);
+        }
+    return 0;
+}
+```
+```text
+Jenny is not on the guest list
+```
+---
