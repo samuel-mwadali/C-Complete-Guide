@@ -3741,6 +3741,7 @@ int main(){
     printf("%d\n", *(p + 3));
     return 0;
 }
+```
 ```text
 25
 50

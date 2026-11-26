@@ -280,3 +280,111 @@ int main(){
 ```text
 Fahrenheit: 98.80                                                                                                       Convert Fahrenheit to Celsius: 37.11 
 ```
+---
+# **C Pass By Reference**
+## Pass By Reference
+In the previous chapter, you learned how to pass values to a function as parameters.<br>When you do this, the function gets a copy of the value. This is called **pass by value**. If the funtion changes the copy, the original variable does not change.
+```c
+#include <stdio.h>
+void addTen(int x){
+    x = x + 10;
+    }
+int main(){
+    int myNum = 5;
+    addTen(myNum);
+    printf("%d\n", myNum);
+    return 0; // Output 5
+}
+```
+The function adds 10 to x, but x is only a copy of myNum. So myNum is still 5. This is how it works, when you call addTen(myNum), the value of myNum(5) is copied into the parameterx. x is a new variable that only exists inside the function, and it is removed when the function is finished.<br>This is not a problem. It is how C normally works, and it is often exactly what you want the function can use the value, but it cannot change your variables by accident. If the function needs to give a result back, it can use return:
+```c
+#include <stdio.h>
+int addTen(int x){
+    return x + 10;
+    }
+int main(){
+    int myNum = 5;
+    myNum = addTen(myNum);
+    printf("%d\n", myNum);
+    return 0; // Output 15
+}
+```
+Use pass by reference (below) only when a function must change the original variable directly, or give back more than one result
+## Pass By Reference
+Sometimes you want a function to change the original variable. To do this, give the function the memory address of the variable, instead of a copy of its value. This is often called pass by reference
+```c
+#include <stdio.h>
+void addTen(int *x){
+    *x = *x + 10;
+    }
+int main(){
+    int myNum = 5;
+    addTen(&myNum);
+    printf("%d\n", myNum);
+    return 0; // Output 15
+}
+```
+Compared to the pass by value example, three things are different.
+- The parameter is a pointer (int *x). It stores the memory address of myNum.
+- The function call uses & to pass the the memory address: addTen(&myNum)
+- Inside the function, *x is myNum itself, so *x = *x + 10; changes myNum to 15<br>
+
+This is what the memory looks like while addTen() runs:
+This is exactly how scanf() works: in scanf("%d", &myNum), you give scanf() the memory address of myNum, so it can store the number that the user types there.<br>
+**Note:** Arrays work this way automatically. When you pass an array to a function, the function gets the memory address of the first element, not a copy of the array. So a function can change the elements of an array, without using &.
+## Swap Two Variables
+In the change values chapter, you learned how to swap the values of two variables with third variables with a third variable. With pointers, you can put the swap in a function:
+```c
+#include <stdio.h>
+void swap(int *a, int*b){
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+int main(){
+    int x = 5;
+    int y = 10;
+    swap(&x, &y);
+    printf("x is %d, y is %d\n", x, y);
+    return 0;
+}
+```
+```text
+x is 10, y is 5 
+```
+Without pointers, the function would only swap its own copies, and x and y would not change.
+## Real-Life Example
+A function can only return one value. With pointers, a function can give back more than one result. This function finds both the lowest and the highest age in an aray.
+```c
+void minMax(int ages[], int length, int *min, int *max){
+    *min = ages[0];
+    *max = ages[0];
+    for (int i = 1; i < length; i++){
+        if (ages[i] < *min){
+            *min = ages[i];
+        }
+        if (ages[i] > *max){
+            *max = ages[i];
+        }
+    }
+}
+int main(){
+    int ages[] = {20, 22, 18, 35, 48, 26, 87, 70};
+    int lowest, highest;
+    minMax(ages, 8, &lowest, &highest);
+    printf("Lowest age: %d\n", lowest);
+    printf("Highest age: %d\n", highest);
+    return 0;
+}
+```
+```text
+Lowest age: 18
+Highest age: 87
+```
+**Example Explained**
+- The function takes four parameters: the array (ages), its length(8), and two pointers(int *min) and (int *max)
+- *min and *max both start with the first age in the array(20)
+- The loop checks the rest of the ages. If an age is lower than *min, it becomes the new lowest age. If it is higher than *max, it becomes the new highest age.
+- in main(), &lowest and &highest pass the memory addresses of two variables, so the function stores the results directly in them.
+- After the function call, lowest is 18 and highest is 87
+---
