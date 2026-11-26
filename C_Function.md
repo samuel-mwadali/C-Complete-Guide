@@ -388,3 +388,125 @@ Highest age: 87
 - in main(), &lowest and &highest pass the memory addresses of two variables, so the function stores the results directly in them.
 - After the function call, lowest is 18 and highest is 87
 ---
+ # **C Variabel Scope**
+ ## Scope
+ Now that you understand how functions work, it is important to learn how variables act inside and outside of functions.<br>In C, variables are only accessible inside the region they are created. This is called **scope**
+ ## Local Scope
+ A variable created inside a function belongs to the local scope of that function, and only be used inside that function.
+ ```c
+ #include <stdio.h>
+void myFunction(){
+    // Local variable that belongs to myFunction
+    int x = 5;
+
+    // Print the variable x
+    printf("%d", x);
+    }
+int main(){
+    myFunction();
+    return 0;
+}
+```
+```text
+5
+```
+A local variable cannot be used outside the function it belongs to. If you try to access the function, an error occurs.
+```c
+#include <stdio.h>
+void myFunction(){
+    // Local variable that belongs to myFunction
+    int x = 5;
+    }
+
+int main(){
+    myFunction();
+    // Print the variable x in the main function
+    printf("%d", x);
+    return 0;
+}
+```
+**Note:** Function parameters are also local variables. They are created when the function is called, and removed when the function is finished (like the parameter x in the pass by reference)
+## Block scope
+A block of code is the code inside curly braces {} like the code in an if statement or a loop. A variable created inside that block.
+```c
+#include <stdio.h>
+int main(){
+    int age = 20;
+    if (age >= 18){
+        // message only exists inside this block
+        char message[] = "You can vote!";
+        printf("%s", message);
+    }
+    // message cannot be used here
+    return 0;
+}
+```
+*Tip:* This also goes for loops, like for (int i = 0; i < 5; i++), where the variable i only exists inside the loop.
+## Global scope
+A variable created outside of a function is called **globla variable** and belongs to the global scope. <br> Global variables are available from within any scope, global and local<br>
+**Example** <br>
+A variable created outside of a function is global and can therefore be used by any function.
+```c
+#include <stdio.h>
+// Global variable x
+int x = 5;
+
+void myFunction(){
+    // We can use x here
+    printf("%d\n", x);
+    }
+
+int main(){
+    myFunction();
+
+    // We can also use x here
+    printf("%d\n", x);
+    return 0;
+}
+```
+## Naming Variables
+If you use the same variable name inside and outside of a function, C will treat them as two separate variables: One available in the global scope(outside the function) and one available in the local scope(inside the function )<br>**Example**<br>The function will print the local x, and then the code will print the global x
+```c
+#include <stdio.h>
+// Global variable x
+int x = 5;
+
+void myFunction(){
+    // Local variable with the same name as the global variable (x)
+    int x = 22;
+    printf("%d\n", x); // Refers to the local variable x
+    }
+
+int main(){
+    myFunction();
+
+    // Refers to the global variable x
+    printf("%d\n", x);
+    return 0;
+}
+```
+```text
+22
+5
+```
+However, you should avoid using the same variable name for both global and local variables as it can lead to errors and confusion.<br>In general, you should be careful with global variables, since they can be accessed and modified from any function.<br> **Example** <br> Change the value of x from myFunction.
+```c
+#include <stdio.h>
+// Global variable x
+int x = 5;
+
+void myFunction(){
+    printf("%d\n", ++x); // Increment the value of x by 1 and print it
+    }
+
+int main(){
+    myFunction();
+
+    // Print the global variable x
+    printf("%d\n", x);
+    return 0;
+    // The value of x is now 6 (no longer 5)
+}
+```
+## Conclusion
+To sum up, use local variables (with good variable names) as much as you can. This will make your code easier to maintain and better to understand. However, you may find global variables when working on existing C programs or while collaborating with others. Therefore, it is good to understand how the scope works and how to use it effectively to make sure your code is clear and functional.
