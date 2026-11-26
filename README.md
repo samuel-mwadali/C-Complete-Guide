@@ -3577,3 +3577,152 @@ Pointers are one of the things that make C stand out fromt other prgramming lang
 They are important in C, because they, let you wor directly with the data in the computer's memory. For example, a function can change the value of a variable if it gets a pointer to it. This is how scanf() stores the user's input in your variable.
 Pointer are also be used to build data structures like list, trees and graphs. And sometimes when working with files and memory management.
 - But be careful, pointers must be handled with care, since it is possible to damage data stored in other memory addresses.
+# **C Pointers and Arrays**
+## Pointers & Arrays
+You can also use pointers to access arrays.
+Consider the following array of intergers.
+```c
+int myNumbers[4] = {25, 50, 75, 100};
+```
+You learned from the arrays chapter that you can loop through the array elements with a for loop
+```c
+#include <stdio.h>
+int main(){
+    int myNumbers[4] = {25, 50, 75, 100};
+    int i;
+    for (i = 0; i < 4; i++){
+        printf("%d\n", myNumbers[i]);
+    }
+    return 0;
+}
+```
+```text
+25
+50
+75
+100
+```
+Instead of printing the value of each array element, let's print the memory address of each array element.
+```c
+#include <stdio.h>
+int main(){
+    int myNumbers[4] = {25, 50, 75, 100};
+    int i;
+    for (i = 0; i < 4; i++){
+        printf("%p\n", &myNumbers[i]);
+    }
+    return 0;
+}
+```
+```text
+000000027EDFFAD0
+000000027EDFFAD4
+000000027EDFFAD8
+000000027EDFFADC
+```
+Note that the last number of each element's memory address is different, with addtion of 4 .
+Memory addresses are written in hexadecimal, where the letters a to f mean 10 to 15. So 8f8 + 4 is 8fc (8+4 = 12,which is c).
+it is because the size of an int is typically 4 bytes, remember.
+```c
+#include <stdio.h>
+int main(){
+    // Create an int variable
+    int myInt;
+
+    // Get the memory size of an int
+    printf("%zu", sizeof(myInt));
+    return 0;
+    // Output 4
+}
+```
+So from the "memory address example" above, you can see that the compiler reserves 4 bytes of memory for each array element, which means that the entire array takes up 16 bytes (4*4) of memory storage.
+```c
+#include <stdio.h>
+int main(){
+    int myNumbers[4] = {25, 50, 75, 100};
+    // Get the size of the myNumbers array
+    printf("%zu", sizeof(myNumbers));
+    return 0;
+}
+```
+## How are pointers related to Arrays
+Ok, so what's the relationship between pointers and arrays? Well,in C, the name array works as a pointer to the first element of the array. Confused? let's try to understand this better and use our "memory address example" above again. The memory address of the first element is the same as the name of the array.
+```c
+#include <stdio.h>
+int main(){
+    int myNumbers[4] = {25, 50, 75, 100};
+
+    // Get the memory address of the myNumbers array
+    printf("%p\n", myNumbers);
+
+    // Get the memory address of the first array element
+    printf("%p\n", &myNumbers[0]);
+    return 0;
+}
+```
+```text
+0000001F7E7FFA50
+0000001F7E7FFA50
+```
+This basically means that we can work with arrays through pointers!
+How? Since myNumbers points to the first element in the array, you can use the *operator to access it.
+```c
+#include <stdio.h>
+int main(){
+    int myNumbers[4] = {25, 50, 75, 100};
+
+    // Get the value of the first element in myNumbers
+    printf("%d", *myNumbers);
+    return 0;
+}
+```
+```text
+25
+```
+To access the rest of the elements in myNumbers, you can add a number to the pointer/array(+1, +2, etc)
+```c
+#include <stdio.h>
+int main(){
+    int myNumbers[4] = {25, 50, 75, 100};
+
+    // Get the value of the second element in myNumbers
+    printf("%d\n", *(myNumbers + 1));
+
+    // Get the value of the third element in myNumbers
+    printf("%d\n", *(myNumbers + 2));
+    return 0;
+}
+```
+or loop throughit
+```c
+#include <stdio.h>
+int main(){
+    int myNumbers[4] = {25, 50, 75, 100};
+    int *ptr = myNumbers;
+    int i;
+    for (i = 0; i < 4; i++){
+        printf("%d\n", *(ptr + i));
+    }
+    return 0;
+}
+```
+It is also possible to change the value of array elements with pointers
+```c
+#include <stdio.h>
+int main(){
+    int myNumbers[4] = {25, 50, 75, 100};
+    // Change the value of the first element to 13
+    *myNumbers = 13;
+    
+    // Change the value of the second element to 17
+    *(myNumbers + 1) = 17;
+    
+    // Get the value of the first element
+    printf("%d\n", *myNumbers);
+    
+    // Get the value of the second element
+    printf("%d\n", *(myNumbers + 1));
+}
+```
+This way of working with arrays might seem a bit excessive, especially with simple arrays like in the examples above. In fact, myNumbers[1] and *(myNumbers + 1) mean exactly the same thing in c.
+But is good to know how it works, because many C programs use pointers to work with arrays. And since strings are actually arrays, you can also use pointers to acess strings. For now, it's great that you know how this works. But like we specified in the previous chapter, pointers must be handled with care, since it is possible to overwrite other data stored in memory.
