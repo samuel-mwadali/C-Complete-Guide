@@ -3726,3 +3726,134 @@ int main(){
 ```
 This way of working with arrays might seem a bit excessive, especially with simple arrays like in the examples above. In fact, myNumbers[1] and *(myNumbers + 1) mean exactly the same thing in c.
 But is good to know how it works, because many C programs use pointers to work with arrays. And since strings are actually arrays, you can also use pointers to acess strings. For now, it's great that you know how this works. But like we specified in the previous chapter, pointers must be handled with care, since it is possible to overwrite other data stored in memory.
+# **C Pointer Arithmetic**
+## Pointer Arithmetic
+Pointer arithmetic means changing the value of a pointer to make it point to a different element in memory. Like we saw on the previous page, array elements are stored next to each other in memory. So if a pointer points to one element, adding 1 moves it to the next one.
+```c
+#include <stdio.h>
+int main(){
+    int myNumbers[4] = {25, 50, 75, 100};
+    int *p = myNumbers; // points to myNumbers[0]
+
+    printf("%d\n", *p);
+    printf("%d\n", *(p + 1));
+    printf("%d\n", *(p + 2));
+    printf("%d\n", *(p + 3));
+    return 0;
+}
+```text
+25
+50
+75
+100
+```
+## Increment and Decrement
+You can move a ponter with ++ and --(and with += / -=)
+```c
+#include <stdio.h>
+int main(){
+    int myNumbers[3] = {10, 20, 30};
+    int *p = myNumbers; // myNumbers[0]
+
+    printf("%d\n", *p); // 10
+    p++; // move to myNumbers[1]
+
+    printf("%d\n", *p); //20
+    p--; // back to myNumbers[0]
+
+    printf("%d\n", *p); // 10
+
+    p += 2; // jump to myNumbers[2]
+    printf("%d\n", *p); //30
+    return 0;
+}
+```
+```text
+10
+20
+10
+30
+```
+This shows that you can move a pointer just like a counter, each time you use p++ or p--, it moves to next or previous element in the array.
+## Pointer Subtraction
+You can subtract two pointers that point to elements in the same array to find out how many elements are between them.
+```c
+#include <stdio.h>
+int main(){
+    int myNumbers[3] = {10, 20, 30, 40, 50};
+    int *start = &myNumbers[1]; // points to 20
+    int *end = &myNumbers[4]; // points to 50
+    int distance = end - start;
+    printf("%d\n", distance); // 3 elements apart 
+    return 0;
+}
+```
+Here:
+- start points to the second element (20)
+- end points to the fifth element (50)
+- end - start gives teh number of elements between them: 3
+**Note:** Pointer subtraction only works when both pointers point into the same array. The result is measured in elements, not bytes.
+## Pointer Arithmetic Depends on Type
+Not all pointers move the same way. When you add 1 to a pointer, it moves forward by the size of the thing it points to - not just by 1 byte.
+For example:
+- An int* pointer moves by the size of an integer (usually 4 bytes)
+- a char* pointer moves by the size of a character (1 byte)
+So if  both pointers start at memory address 1000:
+- int* -> p + 1 would move to address 1004
+- char* -> p + 1 would move to address 1001
+This shows that pointer movement depends on the data type it points to - not on the number you add
+```c
+#include <stdio.h>
+int main(){
+    int myNumbers[2] = {1, 2};
+    char letters[] = "Hi"; // 'H', 'i', '\0'
+
+    int *pi = myNumbers; // int pointer
+    char *pc = letters; // char pointer
+
+    printf("%p\n", pi);
+    printf("%p\n", pi + 1); // moves by sizeof(int)(4 bytes)
+    printf("%p\n", pi + 2); // moves by sizeof(int)(4 bytes)
+
+    printf("%p\n", pc);
+    printf("%p\n", pc + 1); // moves by 1 byte
+    return 0;
+}
+```
+```text
+0x7ffec79a66b8
+0x7ffec79a66bc
+0x7ffec79a66c0
+0x7ffec79a66b5
+0x7ffec79a66b6
+```
+## Looping with Pointers
+In the previous chapter, you learned how to loop through an array using *(ptr + 1)
+Now let's look at another way - by moving pointer itself inside the loop. Each time the pointer is icreased(p++), it moves to the next element in memory.
+```c
+#include <stdio.h>
+int main(){
+    int myNumbers[4] = {25, 50, 75, 100};
+    int *p = myNumbers;
+    for (int i = 0; i < 4; i++){
+        printf("%d\n", *p);
+        p++; // move to next element
+    }
+}
+```
+```text
+25
+50
+75
+100
+```
+Here's what happens in each loop:
+- *p gives the current element value
+- p++ moves the pointer to the next element in the array
+- No array index (i) is needed - the pointer keeps track of the position.
+*Tip:* This way of looping is common when working directly with memory, since the pointer itself moves through the array of using an index number.
+## Common Mistakes to Avoid
+- Using the wrong type: Remember that pointer movement depends on its type. An int* moves in 4-byte steps, but a char* moves 1 byte at a time. Mixing them up wil point to the wrong memory locations.
+- Uninitialized pointers: Always make sure a pointer is pointing to something real before you use it. Using a pointer that doesn't point anywhere can crash your program.
+- Going out of bounds: Never use a pointer to read or change values past the end of an array, or before it starts.
+And be careful, pointers must be handled with care, since it is possible to damage data stored in other memory addresses.
