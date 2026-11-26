@@ -3857,3 +3857,60 @@ Here's what happens in each loop:
 - Uninitialized pointers: Always make sure a pointer is pointing to something real before you use it. Using a pointer that doesn't point anywhere can crash your program.
 - Going out of bounds: Never use a pointer to read or change values past the end of an array, or before it starts.
 And be careful, pointers must be handled with care, since it is possible to damage data stored in other memory addresses.
+---
+# **C Pointer to Pointer**
+## Pointer to Pointer
+You can also have a pointer that points to another pointer. This is called pointer to pointer (or "double pointer"). It might sound confusing at first, but it's just one more step: a pointer that stores the address of another pointer.
+*Think of it like this:* A normal pointer is like another note telling you where that first note is kept.
+*Note:* Pointer to pointer is not something you need to use often as beginner. However, you might see it in more advanced programs, so it's good to understand what it means and how it works.
+Let's look at a simple example to understand how this works
+```c
+#include <stdio.h>
+int main(){
+    int myNum = 10;
+    int *ptr = &myNum;
+    int **pptr = &ptr;
+    
+    printf("myNum = %d\n", myNum);
+    printf("*ptr = %d\n", *ptr);
+    printf("**pptr = %d\n", **pptr);
+    return 0;
+}
+```
+```text
+myNum = 10
+*ptr = 10
+**pptr = 10
+```
+Here's what happens step by step:
+- myNum holds the value 10
+- ptr holds the address of myNum
+- pptr holds the address of ptr
+- *ptr gives the value of myNum
+- **pptr also gives the value of myNum, by going through both pointers
+So:
+- *ptr = value of  myNum
+- **pptr = value of myNum through both levels
+## Changing Values Through a Pointer to Pointer
+Since **pptr accesses the original variable, you can it to change value of the variable too
+```c
+#include <stdio.h>
+int main(){
+    int myNum = 5;
+    int *ptr = &myNum;
+    int **pptr = &ptr;
+    
+    **pptr = 20; // changes myNum
+    
+    printf("myNum = %d\n", myNum); // prints 20
+    return 0;
+}
+```
+```text
+myNum = 20
+```
+## Summary
+- A pointer to pointer stores the address of another pointer.
+- *ptr gives the value of a variable
+- **pptr gives the same value by following both pointers
+- They can be useful when passing, pointers to functions or working with complex data structures.
