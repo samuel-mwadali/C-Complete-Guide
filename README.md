@@ -3492,3 +3492,88 @@ int main(){
 - **Note:** The momory address is in hexadecimal form (0x). You will probably not get the same result in your program, as this depends on where the variable is stored on your computer.
 - *Tip:* You have already used the & operator in the user input chapter. scanf("%d", &myNum) It gives scanf() the memory address of myNum, so it knows where to store the number that the user types.
 A variable that stores a memory address is called a pointer. Pointers let you work directly with data in the computer's memory and they are one of the things that make C stand out from other programming languages, like Python and Java.
+---
+# **C Pointers**
+## Creating Pointers
+You learned from the previous chapter, that we can get the memory address of a variable withthe reference operator &
+```c
+#include <stdio.h>
+int main(){
+    int myAge = 43;
+    printf("%d\n", myAge);
+    printf("%p", &myAge);
+    return 0;
+}
+```
+A pointer is a variable that stores the memory address of another variable as its value.
+A pointer variable to a variable of specific data type (like int), and is created with * operator. 
+The address of the variable you are working with is assigned to the pointer.
+```c
+#include <stdio.h>
+int main(){
+    int myAge = 43; //Any int variable
+    int* ptr = &myAge; // A pointer variable, with the name ptr, that stores the address of myAge
+
+    printf("%d\n", myAge); // Output the value of myAge(43)
+    printf("%p\n", &myAge); // Output the memory address of myAge
+    printf("%p\n", ptr); // Output the memory address of myAge with the pointer
+    return 0;
+}
+```
+```text
+43
+000000A6141FFB94
+000000A6141FFB94
+```
+## example explained
+Create a pointer variable with the name ptr, that points to an int variable (myAge). Note that the type of the pointer has to match the type of the variable you're working with (int in our example) Use the & operator to get the memory addresss of the myAge variable, and assign it to pointer. Now, ptr holds the value of myAge's memory address.
+## Dereference
+In the example above, we used tho pointer variable to get the memory address of a variable (used together with the & reference operator). You can also get the value of the variable the pointer points to, by using the * operator(the dereference operator)
+```c
+#include <stdio.h>
+int main(){
+    int myAge = 43; // Variable declaration
+    int* ptr = &myAge; // pointer declaration.
+
+    // Reference: Output the memory address of myAge with the pointer
+    printf("%p\n", ptr);
+    // Deference: Output the value of myAge with the pointer
+    printf("%d\n", *ptr);
+    return 0;
+}
+```
+```text
+00000077CFDFFC84
+43
+```
+You can also use the difference operator to change the value of the variable that the pointer points to:
+```c
+#include <stdio.h>
+int main(){
+    int myAge = 43; // Variable declaration
+    int* ptr = &myAge; // pointer declaration.
+
+    // Change the value of myAge with the pointer
+    *ptr = 50;
+
+    // Output the new value of myAge (50)
+    printf("%d\n", myAge);
+    return 0;
+}
+```
+Note that the * sign can be confusing here, asit does different things in our code
+- When used in declaration (int* ptr),it creates a pointer variable
+- When not used in declaration, it acts as a deference operator.
+## Two ways to Declare pointers
+There are two ways to declare pointer variables in C
+```c
+int* myNum
+int *myNum
+```
+Both ways do exactly the same thing, so it is up to you which one you use. Just use the same style in all your code.
+**Note:** If you declare more than one varialbe on the same line, the  * only belongs to first one. int* a, b; creaters a pointer named a, and a normal int named b. To create two pointers, write int *a, *b;
+## Notes on Pointers
+Pointers are one of the things that make C stand out fromt other prgramming languages, like Python and Java.
+They are important in C, because they, let you wor directly with the data in the computer's memory. For example, a function can change the value of a variable if it gets a pointer to it. This is how scanf() stores the user's input in your variable.
+Pointer are also be used to build data structures like list, trees and graphs. And sometimes when working with files and memory management.
+- But be careful, pointers must be handled with care, since it is possible to damage data stored in other memory addresses.
