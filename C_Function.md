@@ -388,7 +388,7 @@ Highest age: 87
 - in main(), &lowest and &highest pass the memory addresses of two variables, so the function stores the results directly in them.
 - After the function call, lowest is 18 and highest is 87
 ---
- # **C Variabel Scope**
+ # **C Variable Scope**
  ## Scope
  Now that you understand how functions work, it is important to learn how variables act inside and outside of functions.<br>In C, variables are only accessible inside the region they are created. This is called **scope**
  ## Local Scope
@@ -510,3 +510,115 @@ int main(){
 ```
 ## Conclusion
 To sum up, use local variables (with good variable names) as much as you can. This will make your code easier to maintain and better to understand. However, you may find global variables when working on existing C programs or while collaborating with others. Therefore, it is good to understand how the scope works and how to use it effectively to make sure your code is clear and functional.
+
+---
+# **C Function Declaration and Definition**
+## Function Declaration and Definition
+You have already learned from the previous chapters that you can create and call a function in the following way:
+```c
+#include <stdio.h>
+// Create a function
+void myFunction(){
+    printf("I just got executed!");
+    }
+
+int main(){
+    myFunction(); // Call the function
+    return 0;
+}
+```
+```text
+I just got executed!  
+```
+A function consists of two parts:
+- **Declaration:** the function's name, return type, and parameters(if any)
+- **Definition:** the body of the function (code to be executed)
+```c
+void myFunction(){ // declaration
+    // the body of the function
+    (definition)
+}
+```
+In C, a function must be declared before it is called. That is why the function is created above **main()** in the examples so far.<br>You will often see C programs have the function declaration above main(), and function definition below main(). This makes the code better organized and easier to read:
+```c
+#include <stdio.h>
+// Function declaration
+void myFunction();
+
+// The main function
+int main(){
+    myFunction(); // Call the function
+    return 0;
+}
+
+// Function definition
+void myFunction(){
+    printf("I just got executed!");
+}
+```
+```text
+I just got executed! 
+```
+## What about Parameters
+If we use the example from the function parameters chapter regarding parameters and return values:
+```c
+#include <stdio.h>
+int myFunction(int x, int y){
+    return x + y;
+}
+int main(){
+    int result = myFunction(5,3);
+    printf("Result is = %d", result);
+    return 0;
+}
+```
+```text
+Result is = 8  
+```
+it is considered good practice to write it like this instead
+```c
+#include <stdio.h>
+// Function declaration
+int myFunction(int x, int y);
+
+// The main body
+int main(){
+    int result = myFunction(5,3); // call the function
+    printf("Result is = %d", result);
+    return 0;
+}
+// Function definition
+int myFunction(int x, int y){
+    return x + y;
+}
+```
+```text
+Result is = 8 
+```
+## Functions Calling Other Functions
+As long as you declare functions first, it is also possible to use functions to call other functions:<br> **Example** <br> Use one function to call another function.
+```c
+#include <stdio.h>
+// Declare two functions, myFunction and myOtherFunction
+void myFunction();
+void myOtherFunction();
+
+// The main body
+int main(){
+    myFunction(); // call myFunction (from main)
+    return 0;
+}
+// Define myFunction
+void myFunction(int x, int y){
+    printf("Some text in myFunction\n");
+    myOtherFunction(); // call myFunction (from myFunction)
+}
+// Define myOtherFunction
+void myOtherFunction(){
+    printf("Hey! Some text in myOtherFunction\n");
+}
+```
+```text
+Some text in myFunction
+Hey! Some text in myOtherFunction 
+```
