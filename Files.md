@@ -66,4 +66,110 @@ fprintf(fptr, "\n Hi everybody!");
 fclose(fptr);
 ```
 **Note:** Just like the w mode: if the file does not exist, the a mode will create a new file with the "appended" content.
+---
+# **C Read Files**
+## Read a File
+In the previous chapter, we wrote to a file using w and a modes inside the fopen() function. To read from a file, you can use the r mode.<br>To read from a file, you can use the r mode
+```c
+FILE *fptr;
 
+// Open a file in read mode
+fptr = fopen("filename.txt", "r");
+```
+This opens filename.txt for reading.<br>Reading a file in C takes a few steps. We will guide you through them, one by one.<br>Next, we need to create a string that should be big enough to store line of text from the file.<br>For example, let's create a string that can store up to 100 characters.
+```c
+FILE *fptr;
+
+// Open a file in read mode
+fptr = fopen("filename.txt", "r");
+
+// Store the content of the file
+char myString[100];
+```
+In order to read the content of the filename.txt, we can use the fgets(), function.<br>The fgets() function takes three parameters.
+```c
+fgets(myString, 100, fptr);
+```
+- The first parameter specifies where to store the file content, which will be in the myString array we just created.
+- The second parameter specifies the maximum size of data to read, which should match the size of myString(100).
+- The third parameter requires a file pointer that is used to read the file(fptr in our example)
+
+Now, we can print the string, which will output the content of the file
+```c
+FILE *fptr;
+
+// Open a file in read mode
+fptr = fopen("filename.txt", "r");
+
+// Read the content and store it inside myString
+fgets(myString, 100, fptr);
+
+// Print the file content
+printf("%s", myString);
+
+//Close the file
+fclose(fptr);
+```
+**Note:** The fgets function only reads the first line of the file. If you remember, there were two lines of text in filename.txt<br>To read every line of the file, you can use a while loop
+```c
+FILE *fptr;
+
+// Open a file in read mode
+fptr = fopen("filename.txt", "r");
+
+// Store the content of the file
+char myString[100];
+
+// Read the content and print it
+while(fgets(myString, 100, fptr)){
+    printf("%s", myString);
+}
+
+// Close the file
+fclose(fptr);
+```
+The loop reads one line at a time. When there are no more lines, fgets() returns NULL (no value), and the loop stops.
+## Good Practice
+If you try to open a file for reading that does not exist, the fopen() function will return NULL.<br>*Tip:* As a good practice, we can use an if statement to test for NULL, and print some text instead (when the file does not exist)
+```c
+FILE *fptr;
+// Open a file in read mode
+fptr = fopen("loremipsum.txt", "r");
+
+// Print some text if the file does not exist
+if (fptr == NULL){
+    printf("Not able to open the file.");
+} else {
+    // Close the file (only if it was opened)
+    fclose(fptr);
+}
+```
+With this in mind, we can create more reliable code if we use our "read a file" example above again.<br> **Example** <br> If the file exists, read the content and print it. if the file does not exist, print a message.
+```c
+#include <stdio.h>
+int main(){
+    FILE *fptr;
+    // Open a file in read mode
+    fptr = fopen("filename.txt", "r");
+
+    // Store the content of the file
+    char myString[100];
+
+    // If the files exits
+    if (fptr != NULL){
+        // Read the content and print it
+        while (fgets(myString, 100, fptr)){
+            printf("%s", myString);
+        }
+        // Close the file
+        fclose(fptr);
+    } else {
+        // If the file does not exist
+        printf("Not able to open the file.");
+        }
+    return 0;
+}
+```
+**Note:** Only close a file with fclose() if it was opened. When fopen() returns NULL, there is no file to close and fclose(NULL) can make the program crash.
+
+---
