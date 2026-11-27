@@ -622,3 +622,52 @@ void myOtherFunction(){
 Some text in myFunction
 Hey! Some text in myOtherFunction 
 ```
+---
+# **C Math Function**
+## Math Functions
+There is also a list of math functions available, that allows you to perform mathematical tasks on numbers.<br>To use them, you must include the math.h header file in your program
+```c
+#include <math.h>
+```
+## Square Root
+To find the square root of a number, use the sqrt() function
+```c
+#include <stdio.h>
+#include <math.h>
+int main(){
+    printf("%f", sqrt(16));
+    return 0;
+}
+```
+```text
+4.000000 
+```
+**Note:** The math functions return a double value, so we use %f to print the result. That is why sqrt(16) prints 4.000000 and not 4
+## Round a Number
+The ceil() function rounds a number upwards to the nearest integer, and the floor() function rounds a number downwards to its nearest integer, and returns the result.<br> **Example** <br>
+```c
+#include <stdio.h>
+#include <math.h>
+int main(){
+    printf("%f\n", ceil(1.4));
+    printf("%f\n", floor(1.4));
+    return 0;
+}
+```
+```text
+2.000000
+1.000000
+```
+## Power
+The pow() function returns the value of x to the power of y(x^y)<br> **Example** <br>
+```c
+#include <stdio.h>
+#include <math.h>
+int main(){
+    printf("%f\n", pow(4, 3));
+    return 0;
+}
+```
+```text
+64.000000
+```
