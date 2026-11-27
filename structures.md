@@ -1,0 +1,271 @@
+# **C Structures (structs)**
+## Structures
+Structures (also called structs) are a way to group several related variables into one place.<br>Each variable in the structure is known as member of the strucure.<br>Unlike an array, a structure can contain many different data types (int, float, char, etc)
+## Create a Structure
+You can create a structure by using the struct keyword and declaring each of its members inside curly braces;
+```c
+struct myStructure{ // structure declaration
+    int myNum; // Member (int variable)
+    char myLetter; // Member (char variable)
+}; // End the structure with a semi colon
+```
+To access the structure, you must create a variable of it.
+Use the struct keyword inside the main() function, followed by name of the structure and then the name of the structure variable:<br>Create a struct variable with the name "s1":
+```c
+struct myStructure{
+    int myNum;
+    char myLetter;
+};
+int main(){
+    struct myStructure s1;
+    return 0;
+}
+```
+## Access Structure Members
+To access members of a structure, use the dot syntax (.) <br>**Example**
+```c
+#include <stdio.h>
+// Create a structure called myStructure
+struct myStructure{
+    int myNum;
+    char myLetter;
+};
+int main(){
+    // Create a structure variable of myStructure called s1
+    struct myStructure s1;
+
+    // Assign values to members of s1
+    s1.myNum = 13;
+    s1.myLetter = 'B';
+
+    // Print values
+    printf("My number: %d\n", s1.myNum);
+    printf("my letter: %c\n", s1.myLetter);
+    return 0;
+}
+```
+```text
+My number: 13
+my letter: B
+```
+Now you can easily create multiple structure variables with different values, using just one structure.<br> **Example**
+```c
+#include <stdio.h>
+// Create a structure called myStructure
+struct myStructure{
+    int myNum;
+    char myLetter;
+};
+int main(){
+    // Create a structure variable of myStructure called s1
+    struct myStructure s1;
+    struct myStructure s2;
+
+    // Assign values to members of s1
+    s1.myNum = 13;
+    s1.myLetter = 'B';
+
+    s2.myNum = 20;
+    s2.myLetter = 'C';
+
+    // Print values
+    printf("My number: %d\n", s1.myNum);
+    printf("my letter: %c\n", s1.myLetter);
+    printf("My number: %d\n", s2.myNum);
+    printf("my letter: %c\n", s2.myLetter);
+    return 0;
+}
+```
+```text
+My number: 13
+my letter: B
+My number: 20
+my letter: C
+```
+## What about strings in strutures?
+Remeber that strings in C are actually an array of characters, and unfortunately, you can't assign a value to an array like this:<br> **Example**
+```c
+#include <stdio.h>
+// Create a structure called myStructure
+struct myStructure{
+    int myNum;
+    char myLetter;
+    char myString[30];
+};
+int main(){
+    struct myStructure s1;
+
+    // Trying to assign a value to the string
+    s1.myString = "Samuel Mwadali";
+
+    // Trying to print the value
+    printf("My string: %s\n", s1.myString);
+    return 0;
+}
+```
+```text
+An error will occur.
+```
+However, there is a solution for this! You can use the strcpy() function (from <string.h>) and assign the value to s1.myString, like this:<br> **example**
+```c
+#include <stdio.h>
+#include <string.h>
+// Create a structure called myStructure
+struct myStructure{
+    int myNum;
+    char myLetter;
+    char myString[30]; // string
+};
+int main(){
+    struct myStructure s1;
+
+    // Assign a value to the string using the strcpy function
+    strcpy(s1.myString, "Samuel Mwadali");
+
+    // Print the value
+    printf("My string: %s\n", s1.myString);
+    return 0;
+}
+```
+```text
+My string: Samuel Mwadali
+```
+## Simple Syntax
+You can also assign values to members of a structure variable at declaration time, in a single line.<br>Just insert the values in comma-separated list inside curly braces {}. Note that you don't have to use the strcpy() function for string values with this technique.<br> **Example**
+```c
+#include <stdio.h>
+#include <string.h>
+// Create a structure called myStructure
+struct myStructure{
+    int myNum;
+    char myLetter;
+    char myString[30]; // string
+};
+int main(){
+    // Create a structure variable and assign values to it.
+    struct myStructure s1 = {13, 'B', "samuel mwadali"};
+
+    // Print the value
+    printf("%d %c %s", s1.myNum, s1.myLetter, s1.myString);
+    return 0;
+}
+```
+```text
+13 B samuel mwadali
+```
+**Note:** The order of the inserted values must match the order of the variable types declared in the structure (13 for int, 'B' for char, etc)
+## Copy Structures
+You can also assign one structure to another. In the following example, the values of s1 are copied to s2:
+```c
+#include <stdio.h>
+#include <string.h>
+// Create a structure called myStructure
+struct myStructure{
+    int myNum;
+    char myLetter;
+    char myString[30]; // string
+};
+int main(){
+    // Create a structure variable and assign values to it.
+    struct myStructure s1 = {13, 'B', "samuel mwadali"};
+    struct myStructure s2;
+    s2 = s1;
+
+    // Print the value
+    printf("%d %c %s", s2.myNum, s2.myLetter, s2.myString);
+    return 0;
+}
+```
+```text
+13 B samuel mwadali
+```
+## Modify Values
+If you want to change/modify a value, you can use the dot syntax (.).<br>And to modify a string value, ths strcpy() function is useful again.<br> **Example**
+```c
+#include <stdio.h>
+#include <string.h>
+// Create a structure called myStructure
+struct myStructure{
+    int myNum;
+    char myLetter;
+    char myString[30];
+};
+int main(){
+    // Create a structure variable and assign values to it.
+    struct myStructure s1 = {13, 'B', "samuel mwadali"};
+
+    // Modify values
+    s1.myNum = 30;
+    s1.myLetter = 'C';
+    strcpy(s1.myString, "Something else");
+
+    // Print the value
+    printf("%d %c %s", s1.myNum, s1.myLetter, s1.myString);
+    return 0;
+}
+```
+```text
+30 C Something else
+```
+Modifying values is especially useful when you copy structure values
+```c
+#include <stdio.h>
+#include <string.h>
+// Create a structure called myStructure
+struct myStructure{
+    int myNum;
+    char myLetter;
+    char myString[30];
+};
+int main(){
+    // Create a structure variable and assign values to it.
+    struct myStructure s1 = {13, 'B', "samuel mwadali"};
+    struct myStructure s2;
+
+    // Copy s1 values to s2
+    s2 = s1;
+
+    // Change s2 values
+    s2.myNum = 30;
+    s2.myLetter = 'C';
+    strcpy(s2.myString, "Something else");
+
+    // Print the value
+    printf("%d %c %s\n", s1.myNum, s1.myLetter, s1.myString);
+    printf("%d %c %s", s2.myNum, s2.myLetter, s2.myString);
+    return 0;
+}
+```
+```text
+13 B samuel mwadali
+30 C Something else 
+```
+**Ok, so, how are structures useful?**<br>Imagine you have to write a program to store different information about cars, such as brand, model, and year. What's great about structures is that you can create a single "Car template" and use it for every car you make.
+## Real_Life Example
+Use a structure to store different information about cars
+```c
+#include <stdio.h>
+#include <string.h>
+// Create a structure called myStructure
+struct Car{
+    char brand[30];
+    char model[30];
+    int year;
+};
+int main(){
+    struct Car car1 = {"BMW", "X5", 1999};
+    struct Car car2 = {"Ford", "Mustang", 1969};
+    struct Car car3 = {"Toyota", "Corolla", 2011};
+
+    // Print the value
+    printf("%s %s %d\n", car1.brand, car1.model, car1.year);
+    printf("%s %s %d\n", car2.brand, car2.model, car2.year);
+    printf("%s %s %d\n", car3.brand, car3.model, car3.year);
+    return 0;
+}
+```
+```text
+BMW X5 1999
+Ford Mustang 1969
+Toyota Corolla 2011 
+```
