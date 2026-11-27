@@ -34,5 +34,36 @@ Did you notice the fclose() function in our example above?<br> This will close t
 - Changes are saved properly
 - Other programs can use the file (if you want)
 - Clean up unnecessary memory space
+---
+# **C Write To Files**
+## Write To a File
+Let's use the w mode from the previous chapter again, and write something to file we just created. The w mode means that the file is opened for writing. To write content to it, you can use the fprintf() function and add the pointer variable (fptr in our example) and some text.
+```c
+FILE *fptr;
+// Open a file in writing mode
+fptr = fopen("filename.txt", "w");
+// Write some text to the file
+fprintf(fptr, "Some text");
+// Close the file
+fclose(fptr);
+```
+**Note:** If you write to a file that already exists, the old content is deleted, and new content is inserted. This is important to know, as you might accidentally erase existing content.<br> **For example:**
+```c
+fprintf(fptr, "Hello world!");
+```
+## Append content to a file
+If you want to add content to a file without deleting the old content, you can use the a mode. The a mode appends content at the end of the file.
+```c
+FILE *fptr;
 
+// Open a file in append mode
+fptr = fopen("filename.txt", "a");
+
+// Append some text to the file
+fprintf(fptr, "\n Hi everybody!");
+
+// Close the file
+fclose(fptr);
+```
+**Note:** Just like the w mode: if the file does not exist, the a mode will create a new file with the "appended" content.
 
