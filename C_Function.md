@@ -914,3 +914,107 @@ This is a simple example of how function pointer arrays make programs more flexi
 - It allows passing functions as arguments to other functions
 - Useful for callbacks, menus, and flexible program design.
 
+# **C Callback Functions**
+## Callback Function
+A callback function is a function that is passed as an argument to another function.<br>The receiving function can then call it back(run it) whenever it needs to.<br>This is a powerful way to make your code flexible and reusable - you can decide which function should run, without changing the main logic.<br>In C, callback function are usually implemented using function pointers.
+## Simple Callback Example
+Here's a basic example that shows how one function can "call back" another.<br> **Example** <br> Passing a function as an argument to another function
+```c
+#include <stdio.h>
+void sayHello(){
+    printf("Hello from the callback!\n");
+}
+void runCallback(void (*callback)()){
+    printf("Before calling the callback ... \n");
+    callback();
+    printf("After calling the callback.\n");
+}
+
+int main(){
+    runCallback(sayHello);
+    return 0;
+}
+```
+```text
+Before calling the callback ...
+Hello from the callback!
+After calling the callback.
+```
+In this example:
+- sayHello() is a normal function that prints a meassage.
+- runCallback() receives a function pointer as a parameter.
+- When runCallback(sayHello) runs, it calls sayHello() inside itself.
+
+**Note:** The word "callback" comes from the fact that one function "call back" another that was given to it earlier.
+## Callback with Parameters
+You can also pass functions that take parameters - just make sure the function pointer type matches: <br> **Example** <br> Passing a function with parameters as a callback.
+```c
+#include <stdio.h>
+void addNumbers(int a, int b){
+    printf("The sum is: %d\n", a + b);
+}
+void calculate(void (*callback)(int, int), int x, int y){
+    callback(x, y);
+}
+int main(){
+    calculate(addNumbers, 5, 3);
+    return 0;
+}
+```
+```text
+The sum is: 8
+```
+Here, calculate() receives a function and two numbers, then calls the function (in this case, addNumbers()) with those numbers as arguments.<br>The parameter void (*callback)(int, int) is a pointer to a function that takes two int values and returns nothing.
+## Mulitple Callbacks
+You can use callbacks to let a function behave differently depending on which function you pass in. This is common in code that sorts or filters data.<br> **Example** <br> Using different callback to perform different actions:
+```c
+#include <stdio.h>
+void greetMorning(){
+    printf("Good morning!\n");
+}
+void greetEvening(){
+    printf("Good evening!\n");
+}
+void greet(void (*callback)()){
+    callback();
+}
+int main(){
+    greet(greetMorning);
+    greet(greetEvening);
+    return 0;
+}
+```
+```text
+Good morning!
+Good evening!
+```
+Depending on which function is passed, the program produces different output - without changing greet() itself.
+## Real-Life Example: Using Callbacks in qsort()
+Many C standard library functions use callbacks. For example, the qsort() function in <stdlib.h> uses callback to compare elements while sorting.<br> You provide the comparison function, and qsort() calls it as needed. This will sort the elements.
+```c
+#include <stdio.h>
+#include <stdlib.h>
+int compare(const void *a, const void *b){
+    int x = *(int*)a; // the first number
+    int y = *(int*)b; // the second number
+    return x - y; // negative: x comes first, positive: y comes first
+}
+int main(){
+    int numbers[] = {5, 2, 9, 1, 7};
+    int size = sizeof(numbers) / sizeof(numbers[0]);
+    qsort(numbers, size, sizeof(int), compare);
+    for (int i = 0; i < size; i++){
+            printf("%d", numbers[i]);
+    }
+    return 0;
+}
+```
+```text
+12579
+```
+Here, compare() is the callback function used by qsort() to decide how to order the numbers.<br> qsort() can sort any kind of data, so it gives your function two general pointers (const void*).(int*)a tells C that a points to an int, and the * in front gets that int.
+## Summary
+- A callback function is a function passed as an argument to another function.
+- It allows one function to call another without knowing its name in advance.
+- Callbacks make code more flexible and reusable.
+- They are used in the C Standard Library (like qsort())
