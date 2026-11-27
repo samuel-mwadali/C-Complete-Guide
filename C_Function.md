@@ -671,3 +671,56 @@ int main(){
 ```text
 64.000000
 ```
+# **C Inline Function**
+## Inline Function
+You might sometimes see the inline keyword used in other people's functions. It's not something you need to use often as a beginner, but it's good to know what it means.<br>An inline function is a small function that asks the compiler to insert its code directly where it is called, instead of jumping to it.<br>This can make short, frequently used functions a little faster, because it removes the small delay of a normal function call.<br>Let's compare a regular function with an inline function.<br> **Regular Function**
+```c
+int square(int x){
+    return x * y;
+}
+```
+**Inline Function**
+```c
+static inline int square(int x){
+    return x * y;
+}
+```
+Both functions work the same way. The difference is that the inline version suggests to the compiler to copy the function's code directly where it is used.<br> **Note:** In C, inline functions are usually written as **static inline**. The static keyword makes the function availalble only in the current file.Without it, you can get an error if the compiler decides not inline the function.
+## Inline Function Example
+Here is a simple example that uses an inline function
+```c
+#include <stdio.h>
+static inline int add(int a, int b){
+    return a + b;
+}
+int main(){
+    printf("%d", add(5, 3));
+    return 0;
+}
+```
+```text
+8 
+```
+Here, the compiler might replace add(5, 3) with code 5 + 3 directly - saving the time it would take to call a separate function.
+## When Not to use inline
+Inline functions are best for small, simple functiions. Avoid using them for:
+- Large functions (they make your program bigger)
+- Recursive functions
+- Functions that are rarely called
+
+Too many inline functions can make your program slower and larger, a problem known as code bloat.
+## Inline vs Regular Function
+
+| Regular Function | Inline Function |
+| --- | --- |
+| Code jumps to the function each time it's called | Code may be inserted directly where it's called |
+| Slightly slower(small delay) | Can be slightly faster |
+| Good for large functions | Good for small functions |
+
+Moder compilers are good at deciding this on their own. They often inline small regular functions too, even without the inline keyword. That is why you rarely need to use it, and why we will continue to use regular functions
+## Summary
+- Inline functions are defined with the inline keyword, usually together with static
+- They can make small, often-used functions faster
+- The compiler decides whether to inline a function or not
+- Mostly used for short, simple functions
+
