@@ -787,4 +787,130 @@ int factorial(int n){
 Factorial of 5 is 120
 ```
 **Factorial** means multiplying a number by every number below it, down to 1. For example, the factorial of 5 is: 5 x 4 x 3 x 2 x 1 = 120. By definition, 0! is also 1.
+# **Function Pointer**
+## Function Pointer
+A function pointer is like a normal pointer, but instead of pointing to a variable, it points to a function.<br>This means it stores the address of a function, allowing you to call that function using the pointer.<br>Function pointers are useful when you want to decide which function to run while program is running, or when you want to pass a function as an argument to another function.<br>Think of it like saving a phone number - the pointer knows where the function lives in memory, so you can "cal" it later.
+## Function Pointer Example
+Let's start with a complete example. Below it, you will learn about each part. <br> **Example**<br> A pointer to a function that adds two numbers:
+```c
+#include <stdio.h>
+int add(int a, int b){
+    return a + b;
+}
+int main(){
+    int (*ptr)(int, int) = add;
+    int result = ptr(5, 3);
+    printf("Result: %d", result);
+    return 0;
+}
+```
+```text
+Result: 8
+```
+Here:
+- ptr is a pointer to the function add()
+- ptr(5, 3) calls the functin using the pointer
+
+This works exactly the same as calling add(5, 3) <br>
+**Note:** A function name itself points to start of its code in memory. That means a function name already acts like a pointer!Declaring a function pointer just gives you a variable that can hold that address - so you can change it or pass it around.
+## Declaring a Function Pointer
+The general syntax for declaring a function pointer is 
+```c
+returnType (*pointerName)(parameterType1, parameterType2, ... );
+```
+This means ptr is a pointer (*ptr) to a function that takes two int values (int, int) and returns an int.<br>The parentheses around *ptr are important. Without them, int *ptr(int, int); would declare a function that returns a pointer, not a pointer to a function.
+## Assigning a Function to a Pointer
+You can assign a function to a pointer in two ways:
+```c
+ptr = add;
+ptr = &add;
+```
+Both are the same, because the function's name already represents its address in memory.
+## Calling a Function through a pointer
+Once the pointer is assigned, you call the function in two ways:
+```c
+ptr(5, 3)
+(*ptr)(5, 3)
+```
+Both are valid and do the same thing.
+## Passing a Function as an Argument
+You can pass a function pointer to another function. The function that is passed is called a **callback function.**
+It allows a function to call another function thay you provide as input.<br> **Example** <br> Passing a function pointer to another function
+```c
+#include <stdio.h>
+void greetingMorning(){printf("Good morning!\n");}
+void greetingEvening(){printf("Good evening!\n");}
+void greet(void (*func)()){
+    func();
+}
+int main(){
+    greet(greetingMorning);
+    greet(greetingEvening);
+    return 0;
+}
+```
+```text
+Good morning!
+Good evening!
+```
+Here, greet() takes another function as a parameter and calls it. This way, the same function can do different things, depending on which function you give it.<br>The parameter void (*func)() is a pointer to a function that no parameters and returns nothing (void).
+## Function Pointer Array
+You can also store several function pointers in an array, so you can choose which function to run while the program is running.<br>This example runs three different functions using an array of function pointers:
+```c
+#include <stdio.h>
+void add(){printf("Add\n");}
+void subtract(){printf("Subtract\n");}
+void multiply(){printf("Multiply\n");}
+int main(){
+    void (*operations[3])()= {add, subtract, multiply};
+    for (int i = 0; i < 3; i++){
+        operations[i]();
+    }
+    return 0;
+}
+```
+```text
+Add
+Subtract
+Multiply
+```
+**Operations** is an array of 3 pointers to functions that take no parameters and return nothing.<br>This is often used for simple menus, command lists, or calculators - anywhere you want to call different functions based on user input.<br> **Example** <br> A simple calculator using an array of function pointers:
+```c
+#include <stdio.h>
+void add(int a, int b) {printf("Result: %d\n", a + b);}
+void subtract(int a, int b){printf("Result: %d\n", a - b);}
+void multiply(int a, int b){printf("Result: %d\n", a * b);}
+int main(){
+    int choice, x = 10, y = 5;
+    void (*operations[3])(int, int) = {add, subtract, multiply};
+    printf("x = %d, y = %d\n\n", x, y);
+    printf("Choose an operation:\n");
+    printf("0: Add\n1: Subtract\n2: Multiply\n");
+    scanf("%d", &choice);
+    if (choice >= 0 && choice < 3){
+        operations[choice](x, y);
+    } else {
+        printf("Invalid choice!\n");
+    }
+    return 0;
+}
+```
+In this program:
+- All three math functions(add(), subtract(), and muliply()) are stored in an array.
+- The user picks which one to run by entering a number
+- The correct function is then called using the pointer array.
+
+This is a simple example of how function pointer arrays make programs more flexible and reusable.
+## Function Pointer vs Normal Function
+| Norml Function | Function Pointer |
+| --- | ---|
+| Called directly by its name | Called using a pointer |
+| The function is decided before the programs runs | You can choose which to call while the program is running |
+| Good for simple code | Good for flexible and reusable code |
+
+## Summary
+- A function pointer stores the address of a function.
+- You can declare, assign, and call functions through it.
+- It allows passing functions as arguments to other functions
+- Useful for callbacks, menus, and flexible program design.
 
