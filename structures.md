@@ -743,3 +743,102 @@ Here, Operation is a new name for "a pointer to a function that takes two int va
 It is up to you whether you want to use typedef or not. Your code will work the same without it. However, in modern C it is often used to make code shorter, clearer, and easier to maintain.
 
 ---
+# **C Struct Alignment and Padding**
+## Struct Padding
+When you create a struct in C, the compiler may add some extra bytes of padding between members.<br>This is done to make the program run faster on your computer, because most CPUs read data more efficiently when it's properly aligned in memory.<br>You rarely need to worry about this unless you work with low-level memory or file formats.<br>
+**In short:** Padding means the compiler sometimes adds empty spaces inside a struct to keep things fast and properly aligned in memory.
+```c
+#include <stdio.h>
+struct Example{
+    char a; // 1 byte
+    int b; // 4 byte
+    char c; // 1 byte
+};
+
+int main(){
+    printf("Size of struct: %zu bytes\n", sizeof(struct Example));
+    return 0;
+
+```
+```text
+Size of struct: 12 bytes
+```
+You might expect the size to be 1 + 4 + 1 = 6 bytes - but it will usually print 12 bytes!
+## Why?
+The compiler adds padding bytes so that the int member (b) starts at a memory address that's a multiple of 4. This helps the CPU read it faster.<br>Here's how memory is actully arranged:
+| Member | Bytes | Notes |
+| --- | --- | --- |
+| a | 1 | Stored first |
+| padding | 3 | Added so b starts at a multiple of 4 |
+| b | 4 | Aligned to 4 byte boundary |
+| c | 1 | Stored next |
+| padding | 3 | Added to make total size a multiple of 4 |
+
+Total = 1 + 3 + 4 + 1 + 3 = 12 bytes
+## How to reduce padding
+Padding depends on the order of members in the struct. If you group larger types first, you can make the struct smaller.
+```c
+#include <stdio.h>
+struct Example{
+    int b; // 4 byte
+    char a; // 1 byte
+    char c; // 1 byte
+};
+
+int main(){
+    printf("Size of struct: %zu bytes\n", sizeof(struct Example));
+    return 0;
+
+```
+```text
+Size of struct: 8 bytes
+```
+Now the struct is only 8 bytes instead of 12, because there's less padding needed.
+## Why It Matters
+- Padding helps programs run faster by keeping data aligned in memory
+- It can make structs bigger than expected
+- Reordering members can reduce the total size
+- **Note:** You rarely need to worry about this unless you work with low-level memory or file formats.
+## Structs vs Unions
+So far, we've talked about padding inside **structs.** But what about unions?<br>
+Unions store all members in the same memory location, so there is **no padding between members.** However, both structs and unions still follow alignment rules - the data must start at memory addresses that match their type size.
+```c
+#include <stdio.h>
+struct S{
+    char a;
+    int b;
+    char c;
+};
+union U{
+    char a;
+    int b;
+    char c;
+};
+
+int main(){
+    printf("Struct size: %zu\n", sizeof(struct S));
+    printf("Union size: %zu\n", sizeof(union U));
+    return 0;
+}
+```
+```text
+Struct size: 12
+Union size: 4
+```
+Explanation
+- **Struct** - members are stored one after another, so padding is added between them.
+- **Union** - all members share the same memory, so only the largest member decides its total size
+
+| Feature | Struct | Union |
+| --- | --- | --- |
+| Members stored | One after another | All share the same memory space |
+| Padding between members | Yes | No |
+| Aligned to | Each members's type | Largest member's type |
+| Total size | Sum of members + padding | Size of largest member(plus padding, if needed)
+- *Tip:* You usually don't need to worry about this, but it helps to know why structs sometimes take up more memory than expected, while unions do not.
+## Summary
+- Struct members are aligned based on their data type size.
+- The compiler may add padding bytes to align data properly.
+- The total struct size is often larger than the sum of its members.
+- Reodering members can reduce padding and save memory
+---
