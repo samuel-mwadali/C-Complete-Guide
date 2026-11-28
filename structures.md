@@ -592,3 +592,154 @@ Use unions when:
 - You only use one type at a time
 - Saving memory is very important
 ---
+# **C Typedef**
+## C typedef
+The typedef keyword let's you create a new name (an alias) for an existing type. This can make comples declarations easier to read, and your code easier to maintain.<br>For example, instead of always writing float, we can create a new type called Temperature to make the code clearer.
+```c
+#include <stdio.h>
+typedef float Temperature;
+int main(){
+    Temperature today = 25.5;
+    Temperature tomorrow = 18.6;
+
+    printf("Today: %.1f C\n", today);
+    printf("Tomorrow: %.1f C\n", tomorrow);
+    return 0;
+}
+```
+```text
+Today: 25.5 C
+Tomorrow: 18.6 C
+```
+Here, Temperature is just another name for float. However, the code is more expressive: it tells us that these numbers are temperatures, not just any floating-point numbers.
+## Why use typedef?
+- **Simplifies code:** Shorter, easier-to-read type names
+- **Improves clarity:** Expresses intent better (for example, Age instead of just int). Also helps avoid confusion when many variables share the same base type (like float or double)
+
+**Good to know:** In modern C, typedef is often used together with struct, enum and function pointers to keep code clean and easier to read.
+## typedef with struct
+typedef can be useful with struct, because it lets you avoid writing struct every time
+```c
+#include <stdio.h>
+// Without typedef:
+struct Car{
+    char brand[30];
+    int year;
+};
+
+// With typedef:
+typedef struct{
+    char brand[30];
+    int year;
+} Car;
+
+int main(){
+    struct Car car1 = {"BMW", 1999}; // needs "struct"
+    Car car2 = {"Ford", 1969}; // shorter with typedef
+
+    printf("%s %d\n", car1.brand, car1.year);
+    printf("%s %d\n", car2.brand, car2.year);
+    return 0;
+}
+```
+```text
+BMW 1999
+Ford 1969
+```
+**Note:** In real program, you would choose one of the two ways. In this example, struct Car and Car are two separates types that just look the same.<br>This example shows how typedef makes it easier to work with multiple struct variables, like different car models.
+```c
+#include <stdio.h>
+// With typedef:
+typedef struct{
+    char brand[30];
+    char model[30];
+    int year;
+} Car;
+
+int main(){
+    Car car1 = {"BMW", "X5", 1999};
+    Car car2 = {"Ford", "Mustang", 1969};
+    Car car3 = {"Toyota", "Corolla", 2011};
+
+    printf("%s %s %d\n", car1.brand, car1.model, car1.year);
+    printf("%s %s %d\n", car2.brand, car2.model, car2.year);
+    printf("%s %s %d\n", car3.brand, car3.model, car3.year);
+    return 0;
+}
+```
+```text
+BMW X5 1999
+Ford Mustang 1969
+Toyota Corolla 2011
+```
+Here you can see how typedef keeps the code clean when structs are nested inside other structs
+```c
+#include <stdio.h>
+// Define three structs with typedef
+typedef struct {
+    char firstName[20];
+    char lastName[20];
+} Owner;
+
+typedef struct{
+    char brand[20];
+    int year;
+    Owner owner;
+} Car;
+
+typedef struct {
+    char name[30];
+    Car featuredCar;
+} Dealership;
+
+int main(){
+    Owner person = {"Samuel", "Mwadali"};
+    Car car1 = {"Toyota", 2010, person};
+    Dealership d = {"City Motors", car1};
+    printf("Dealership: %s\n", d.name);
+    printf("Featured Car: %s (%d), owned by %s %s\n",
+           d.featuredCar.brand,
+           d.featuredCar.year,
+           d.featuredCar.owner.firstName,
+           d.featuredCar.owner.lastName);
+    return 0;
+}
+```
+```text
+Dealership: City Motors
+Featured Car: Toyota (2010), owned by Samuel Mwadali
+```
+## typedef with Function Pointers
+typedef is also useful with function pointers, which can be hard to read. Instead of writing int (*op)(int, int) every time, you can give the type a short name.
+```c
+#include <stdio.h>
+/*  Operation is a new name for a pointer to a function
+    that takes two int values and returns an int */
+typedef int (*Operation)(int, int);
+
+int add(int a, int b){
+    return a + b;
+}
+int multiply(int a, int b){
+    return a * b;
+}
+int main(){
+    Operation op = add;
+    printf("%d\n", op(5, 3)); // 8
+
+    op = multiply;
+    printf("%d\n", op(5, 3)); // 15
+
+    return 0;
+}
+```
+```text
+8
+15
+```
+Here, Operation is a new name for "a pointer to a function that takes two int values and returns an int". Now you can write Operation op instead of int (*op)(int, int).
+
+---
+It is up to you whether you want to use typedef or not. Your code will work the same without it. However, in modern C it is often used to make code shorter, clearer, and easier to maintain.
+
+---
