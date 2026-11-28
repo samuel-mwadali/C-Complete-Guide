@@ -450,7 +450,7 @@ int main(){
 ```
 The variable best **best** stores the index of the best student so far. The loop compares each student with best one, and updates best when it finds a higher grade.
 ---
-# **Structs and Pointers**
+# **C Structs and Pointers**
 ## Strucures and Pointers
 You can use pointers with structs to make your code more efficient, especially when passing structs to functions or changing their values.<br>To use a pointer to a struct, just add the + symbol, like you would with oher data types.<br>To access its members, you must use the -> operator instead of the dot . syntax.
 ```c
@@ -512,3 +512,83 @@ Using pointers with structs is helpful when:
 - **You want to create struct dynamically using memory allocation.** With pointers, you can use malloc() to create structs while the program is running.
 
 **Tip:** If you're working with big programs or many values, struct pointers can help make your code cleaner and more efficient.
+
+# **C Unions**
+## C Unions
+A union is similar to a struct in that it can store members of different data types.<br>However, there are somes differences:
+
+- In a struct, eacn member has its own memory
+- In a union, all members share the same memory, which means you can only use one of the values at a time.<br>
+
+Most of the time, you will use structs instead of unions, as they can store and access multiple values at the same time, which is more common in everyday programs.<br>
+However, unions are useful when you only need to store one of several possible types at a time, and you want to save memory.
+## Declare a Union
+To create a union, use the union keyword, and then create a variable from it (just like with structs);
+```c
+#include <stdio.h>
+union myUnion{ // Union declaration
+    int myNum; // Member (int)
+    char myLetter; // Member (char)
+    char myString[30]; // Member (char array)
+    };
+int main(){
+    // Create a union variable with the name "u1":
+    union myUnion u1;
+    return 0;
+}
+```
+## Access Union Members
+And just like with structs, to access members of a union, use the dot . syntax.<br>
+**Important:** Since all members share the same memory, changing one will affect the others. Only the **last assigned member** holds a valid value.
+```c
+#include <stdio.h>
+union myUnion{ // Union declaration
+    int myNum; // Member (int)
+    char myLetter; // Member (char)
+    char myString[30]; // Member (char array)
+    };
+int main(){
+    // Create a union variable with the name "u1":
+    union myUnion u1;
+
+    u1.myNum = 1000;
+
+    //Since this is the last value written to the union, myNum no longer holds 1000 - its value is now invalid
+    u1.myLetter = 'A';
+
+    printf("myNum: %d\n", u1.myNum); // This value is no longer reliable
+    printf("myLetter: %c\n", u1.myLetter); // Prints 'A'
+    return 0;
+}
+```
+```text
+myNum: 833
+myLetter: A
+```
+## Size of a Union
+The size of a union is usually the same as the size of its largest member.
+```c
+#include <stdio.h>
+union myUnion{ // Union declaration
+    int myNum; // Member (int)
+    char myString[36]; // Member (char array)
+    };
+int main(){
+    // Create a union variable with the name "u1":
+    union myUnion u1;
+
+    printf("Size of union: %zu bytes\n", sizeof(u1));
+    return 0;
+}
+```
+```text
+Size of union: 36 bytes
+```
+Since the largest member is 36 bytes, the entire union will also be 36 bytes.<br>If it was a struct instead, the size would be 40 bytes.<br> myNum (4 bytes) + myString (36 bytes) = 40 bytes total
+## When to Use Unions
+Use unions when:
+
+- You need to store different types in the same location
+- You only use one type at a time
+- Saving memory is very important
+---
