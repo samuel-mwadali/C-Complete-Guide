@@ -269,3 +269,61 @@ BMW X5 1999
 Ford Mustang 1969
 Toyota Corolla 2011 
 ```
+---
+# **C Nested Structures**
+## Nested Structs
+A structure can contain another structure as a member. This is called a **nested structure**, and it is useful when you want to group related data together in layers
+```c
+#include <stdio.h>
+// Create a structure
+struct Owner{
+    char firstName[30];
+    char lastName[30];
+};
+struct Car{
+    char brand[30];
+    int year;
+    struct Owner owner; // Nested structure
+    };
+int main(){
+    struct Owner owner = {"Binary", "Flores"};
+    struct Car car1 = {"Ford", 2010, owner};
+
+    // Print the value
+    printf("Car: %s (%d)\n", car1.brand, car1.year);
+    printf("Owner: %s %s\n", car1.owner.firstName, car1.owner.lastName);
+    return 0;
+}
+```
+```text
+Car: Ford (2010)
+Owner: Binary Flores
+```
+Here, the Car structure contains another structure (Owner) inside it. This makes it easy to organize complex data, for example, a car and its owner.<br>To access a member of the inner structure, use the dot. twice, like car1.owner.firstName
+## Create the inner Structure Directly
+You can also create the innner structure directly inside the curly braces, without creating a separate variable for it first
+```c
+#include <stdio.h>
+// Create a structure
+struct Owner{
+    char firstName[30];
+    char lastName[30];
+};
+struct Car{
+    char brand[30];
+    int year;
+    struct Owner owner; // Nested structure
+    };
+int main(){
+    struct Car car1 = {"Ford", 2010, {"Binary", "Flores"}};
+
+    // Print the value
+    printf("Car: %s (%d)\n", car1.brand, car1.year);
+    printf("Owner: %s %s\n", car1.owner.firstName, car1.owner.lastName);
+    return 0;
+}
+```
+```text
+Car: Ford (2010)
+Owner: Binary Flores
+```
