@@ -327,3 +327,125 @@ int main(){
 Car: Ford (2010)
 Owner: Binary Flores
 ```
+---
+# **C Arrays of Structs**
+## Arrays of Structs
+A struct groups related values, like the name and age of one student.<br>When you want to store many student, you can create an array of structs. Each element in the array is a whole struct
+```c
+#include <stdio.h>
+// Create a structure
+struct Student{
+    char name[20];
+    int age;
+    };
+int main(){
+    struct Student students[3] ={
+        {"Mwadali", 20},
+        {"Anja", 22},
+        {"Jenny", 21}
+        };
+    printf("%s is %d years old\n", students[0].name, students[0].age);
+    return 0;
+}
+```
+```text
+Mwadali is 20 years old
+```
+Use the index to pick a student, and the dot (.) to pick a member. For example,<br> students[0].name is the name of the first student.
+## Loop through an Array of Structs
+Use a for loop to print all the students:
+```c
+#include <stdio.h>
+// Create a structure
+struct Student{
+    char name[20];
+    int age;
+    };
+int main(){
+    struct Student students[3] ={
+        {"Mwadali", 20},
+        {"Anja", 22},
+        {"Jenny", 21}
+        };
+    int i;
+    for (i = 0; i < 3; i++){
+            printf("%s is %d years old\n", students[i].name, students[i].age);
+    }
+    return 0;
+}
+```
+```text
+Mwadali is 20 years old
+Anja is 22 years old
+Jenny. is 21 years old
+```
+## Change values
+To change a member, use the index to pick the student, and the dot to pick the member<br>In this example, we make two changes: we change the age of the first student (Mwadali) to 23; and the name of the second student (Anja) to "Samuel":
+```c
+#include <stdio.h>
+#include <string.h>
+// Create a structure
+struct Student{
+    char name[20];
+    int age;
+    };
+int main(){
+    struct Student students[3] ={
+        {"Mwadali", 20},
+        {"Anja", 22},
+        {"Jenny", 21}
+        };
+    students[0].age = 23;
+    strcpy(students[1].name, "Samuel");
+
+    int i;
+    for (i = 0; i < 3; i++){
+            printf("%s is %d years old\n", students[i].name, students[i].age);
+    }
+    return 0;
+}
+```
+```text
+Mwadali is 23 years old
+Samuel is 22 years old
+Jenny is 21 years old
+```
+**Note:** We use = to change the age, because it is a number. For the name, we use strcpy, because you cannot use = for strings.
+## Real-Life Example
+Find the student with the highest grade
+```c
+#include <stdio.h>
+// Create a structure
+struct Student{
+    char name[20];
+    int grade;
+    };
+int main(){
+    struct Student students[4] ={
+        {"Mwadali", 92},
+        {"Anja", 85},
+        {"Jenny", 88},
+        {"Samuel", 90}
+        };
+
+    int best = 0;
+    int i;
+
+    for (i = 0; i < 4; i++){
+            if (students[i].grade > students[best].grade){
+                    best = i;
+            }
+            printf(" Students name: %s Student grade: %d\n", students[i].name, students[i].grade);
+    }
+    printf("Top student: %s (%d)\n", students[best].name, students[best].grade);
+    return 0;
+}
+```
+```text
+ Students name: Mwadali Student grade: 92
+ Students name: Anja Student grade: 85
+ Students name: Jenny Student grade: 88
+ Students name: Samuel Student grade: 90
+ Top student: Mwadali (92)
+```
+The variable best **best** stores the index of the best student so far. The loop compares each student with best one, and updates best when it finds a higher grade.
